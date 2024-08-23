@@ -5,7 +5,7 @@
     background-image: url('../img/sodubear.webp'), url(../../HTML/img/iphone.jfif);
     
     /* content가 넘칠 떄 스크롤 생성 */
-    /* overflow: scroll; */
+    overflow: scroll;
 
     /* 배경 이미지 크기 설정 
         background-size : 배경 이미지의 크기를 설정합니다.
@@ -25,7 +25,12 @@
             -퍼센티지 : 25%, 75%
             -Edge offsets : bottom 30px right 50px
     */
-    background-position: center;
+    /* background-position: center; */
+
+    /*
+        background-attachment : 스크롤이 생길 경우 배경 이미지의 고정 여부 설정
+     */
+    background-attachment:fixed;
 
 }
 

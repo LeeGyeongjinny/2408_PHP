@@ -1,0 +1,83 @@
+/* .container {
+    border: 1px dotted gray;
+    margin: 0;
+    padding-left: 0;
+    background-repeat: no-repeat;
+    background-image: url(../img/panda\ triplet.webp);
+    background-position: right bottom;
+    background-size: 55%;
+    width: 700px;
+    height: 800px;
+    background-color: white;
+}
+
+h1 {
+    background-color: rgb(22, 80, 119);
+    color: white;
+    width: 600px;
+    margin: 50px auto 30px;
+    padding: 20px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+h2{
+    font-style: italic;
+    margin-bottom: 50px;
+}
+
+.div-1{
+    padding-left: 20px;
+}
+
+ul{
+    list-style-type: none;
+    line-height: 2rem;
+}
+
+h3 {
+    color: red;
+} */
+
+body {
+    background-color: #000;
+}
+
+.container {
+    width: 500px;
+    height: 700px;
+    /* 
+        box-sizing 안하는 이유 : 이미 container사이즈 고정이라
+        반응형 할 때는 조절 쉽게 하기 위해 필요하다
+        필수는 아님
+     */
+    margin: auto;
+    padding: 30px 15px;
+    border: 1px dotted gray;
+    background-color: white;
+    background-image: url('../img/panda\ triplet.webp');
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
+
+h1 {
+    background-color: darkcyan;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h3 {
+    color: red;
+}
+
+ul {
+    list-style-type: none;
+    line-height: 2rem;
+}
