@@ -1,0 +1,107 @@
+/* * {
+    margin: 0;
+    padding: 0;
+}
+
+fieldset {
+    padding: 10px;
+    margin: 10px;
+    width: 400px;
+    background-image: url(../img/usa\ guy.jfif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+legend {
+    color: #f74dbe;
+    font-weight: 900;
+    font-size: 2rem;
+}
+
+.required::before {
+    content: '*';
+    color: #ff0000;
+}
+
+
+input:focus, textarea:focus {
+    border: 3px solid #ff0000;
+    outline: none;
+}
+
+input:checked + label {
+    color: #ff0000;
+}
+
+.text {
+    vertical-align: top;
+}
+
+textarea {
+    display: inline-block;
+}
+
+p {
+    display: none;
+}
+
+button:hover + p{
+    display:inline;
+    background-color: #000;
+    color: #ffffff;
+}
+
+input, textarea {
+    background: transparent;
+}
+
+input {
+    display: inline-block;
+} */
+
+
+fieldset {
+    background-image: url(../img/panda\ triplet.webp);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+
+legend {
+    color: magenta;
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.label-required::before {
+    content: '*';
+    color: #ff0000;
+}
+
+input, textarea {
+    background-color: transparent;
+}
+
+input:focus, textarea:focus {
+    border: 3px solid #ff0000;
+    outline: none;
+}
+
+.radio-gender:checked + label {
+    color: #ff0000;
+}
+
+#memo {
+    vertical-align: top;
+}
+
+.hide {
+    display: none;
+    margin: 0;
+}
+
+.btn-send:hover + .hide {
+    display: inline-block;
+    background-color: #000000;
+    color: #ffffff;
+}

@@ -1,0 +1,95 @@
+/* * {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #c4c4c4;
+    display: inline-block;
+    box-shadow: 0 10px 10px 0px #2b2b2b;
+    margin: 0 auto;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    float: left;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin: 0;
+}
+.list1 {
+    border-right: 1px solid greenyellow;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    width: 100px;
+}
+
+a:visited, a:link {
+    color: #000;
+}
+
+.container :not(last-child) a:hover{
+    background-color: #4d4d4d;
+    background-size: 100px;
+}
+
+.container :last-child a:hover {
+    background: #f00;
+    color: #ffffff;
+} */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 20px;
+}
+
+ul {
+    list-style: none;
+    /* list-style-type: none; 똑같음 */
+    width: 740px;
+    height: 40px;
+    box-shadow: 0px 5px 5px 5px #000;
+}
+
+li {
+    padding: 10px 40px;
+    float: left;
+    background-color: #cecece;
+}
+
+li:not(:last-child) {
+    border-right: 3px solid green;
+}
+
+li:hover {
+    background-color: #4d4d4d;
+}
+
+li:last-child:hover {
+    background-color: #ff0000;
+    color: #ffffff;
+}
+
+/* li:nth-child(-n +5):hover {
+    color: red;
+    background-color: aquamarine;
+}
+
+li:nth-child(n + 3):nth-child(-n + 4):hover {
+    color: blue;
+    background-color: yellow;
+} */ 
