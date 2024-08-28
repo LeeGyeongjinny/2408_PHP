@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* sidebar */
+
+.sidebar {
+    background-color: #06f;
+}
+
+h1 {
+    color: #fff;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.list-side {
+    list-style-type: none;
+    color: #fff;
+    margin-bottom: 3rem;
+}
+
+.list-side li {
+    padding: 0.2rem 1rem;
+}
+
+.list-side li:nth-child(1) {
+    background-color: #5f9cf8;
+    font-weight: 900;
+    padding: 0.5rem 1rem;
+}
+
+.list-side li:not(:nth-child(1)):hover {
+    background-color: rgb(0, 0, 0);
+    opacity: 0.8;
+    transition: all 1s;
+}
+
+/* main */
+
+.main {
+    background-color: #cacaca;
+}
+
+.main-search {
+    height: 50px;
+    /* padding: 5px; */
+}
+/* .main-search-form {
+    display: flex;
+    justify-content: space-around;
+} */
+
+.main-search > form {
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 1rem;
+}
+
+#search {
+    width: 80%;
+}
+
+.btn-search {
+    border: none;
+    background-color: rgb(133, 190, 46);
+    border-radius: 50%;
+    font-weight: 900;
+    height: 40px;
+    width: 40px;
+    font-size: 1.5rem;
+    line-height: 40px;
+    color: #ffffff;
+}
+
+h2 {
+    color: #fff;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    font-size: 3rem;
+    /* height: 300px; */
+}
+
+.main-title {
+    height: 300px;
+    background-image: url(./img/main_title.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /* gap: 10px;
+    padding: 10px; */
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.card {
+    background-color: #fff;
+    /* padding: 10px; */
+    padding: 1rem;
+}
+
+.card-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 70%
+}
+
+.card-title {
+    margin: 5px 0;
+}
+
+.btn-top {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%;
+    font-weight: 900;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+} 
+
+
+/* 최하단으로? */

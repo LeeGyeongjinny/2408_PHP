@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+/* sidebar */
+.sidebar {
+    background-color: #ff3b49;
+}
+
+h1 {
+    margin: 3rem auto;
+    text-align: center;
+    color: #ffffff;
+}
+
+.side-menu {
+    list-style: none;
+    color: #ffffff;
+    margin-bottom: 3rem;
+}
+
+.side-menu > li {
+    padding: 0.2rem 1rem;
+}
+
+.side-menu > li:nth-child(1) {
+    font-weight: 900;
+    background-color: #ff5662;
+    padding: 0.5rem 1rem;
+}
+
+.side-menu > li:not(:nth-child(1)):hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0.8;
+    transition: all 1.5s;
+}
+
+
+
+/* main */
+.main {
+    background-color: #e1e1e1;
+}
+
+.main-search-bar {
+    height: 50px;
+}
+
+.main-search-bar > form {
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 1rem;
+}
+
+#search {
+    width: 80%;
+}
+
+.btn-search {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* 50%는 완전 둥글게 */
+    background-color: #6e5af0;
+    border: none; /* boder 외곽선 없애기 */
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 900;
+    line-height: 40px; /* 아래로 살짝 쏠려있던 S 중앙으로*/
+}
+
+.main-title-bar {
+    display: flex;  /* line-height, text-align 해도 됨*/
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    background-image: url(./img/main_title.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+h2 {
+    font-size: 3rem;
+    color: #ffffff;
+
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    padding: 1rem; /* 현재 1rem=16px*/
+    gap: 1rem;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 1rem;
+}
+
+.card-img {
+    padding-top: 70%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card-title {
+    margin: 1rem 0;
+}
+
+/* 탑버튼 */
+.btn-top {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background-color: #000;
+    color: #ffffff;
+    font-weight: 900;
+}
