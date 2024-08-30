@@ -5,7 +5,7 @@
 -- 테이블에서 특정 컬럼만 조회하는 방법
 SELECT 
 	emp_id
-	,name
+	,NAME
 FROM employees
 ;
 
@@ -44,8 +44,13 @@ WHERE
 	NAME = '원성현'
 ;
 
--- 비교연산자 : >, <, = >=, =<, !=
+-- 비교연산자 : >, <, = >=, <=, !=
 -- 사번이 6이상인 사원의 정보를 조회해 주세요.
+SELECT *
+FROM employees
+WHERE emp_id >= 6;
+
+-- 사번이 6이 아닌  사원의 정보를 조회해 주세요.
 SELECT *
 FROM employees
 WHERE emp_id != 6;
