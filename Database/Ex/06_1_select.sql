@@ -238,3 +238,29 @@ WHERE
 	end_at IS NULL
 GROUP BY dept_code
 ;
+
+-- LIMIT, OFFSET : 출력하는 데이터의 개수 제한
+SELECT *
+FROM employees
+ORDER BY emp_id ASC
+LIMIT 5 OFFSET 0
+;
+
+-- 현재 받고 있는 급여 중 사원의 연봉 상위 5명 조회해주세요.
+SELECT 
+	*
+FROM salaries
+WHERE 
+	end_at IS NULL
+ORDER BY salary DESC
+LIMIT 5 
+;
+
+-- SELECT 문의 기본 구조
+SELECT [DISTINCT] [컬럼명]
+FROM [테이블명]
+WHERE [쿼리 조건]
+GROUP BY [컬럼명] HAVING [집계함수 조건]
+ORDER BYH [컬럼명 ASC || 컬럼명 DESC]
+LIMIT [n] OFFSET [n]
+;
