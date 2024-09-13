@@ -34,7 +34,7 @@
 $str = "전역 스코프"; // <?php 바로 밑에?
 
 function my_scope1() {
-    global $str;
+    global $str; // 전역스코프 사용을 위해 선언
     echo $str;
 }
 
