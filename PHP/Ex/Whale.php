@@ -26,7 +26,7 @@ class Whale {
         // this : class 내의 프로퍼티나 메소드에 접근하기 위해 사용
         echo "나이는 ".$this->age;
         echo "나이는 ".$this->breath(); // 메소드 호출 -> 연결연산자로 연결 // 결과는 숨을쉽니다. 나이는
-    }
+    } // php실행 순서 : 위에서 아래로, 오른쪽에서 왼쪽으로
 
     // static 메소드 (정적 메소드)
     public static function myStatic() {
