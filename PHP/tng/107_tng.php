@@ -34,6 +34,7 @@ try {
         echo new Exception("Update Count Error");
     }
 
+    // ----------------------------------------------------
     // 2500만원으로 변경
     $sql = " INSERT INTO salaries( "
             ."          emp_id "

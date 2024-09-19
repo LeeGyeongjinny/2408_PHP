@@ -104,4 +104,5 @@ $stmt = $conn->prepare($sql); // 쿼리 준비
 $stmt->execute($prepare); // 쿼리 진행
 $result = $stmt->fetchAll(); // 결과 fetch
 
+
 print_r($result);

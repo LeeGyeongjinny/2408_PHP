@@ -80,7 +80,7 @@ try {
         throw new Exception("Insert Count Error : salaries");
     }
 
-    // $emp_id = $conn->lastInsertId(); -> 이거 하면 방금 넣은 salaries의 pk를 가져오기 때문에 갱신하면 안됨
+    // $emp_id = $conn->lastInsertId(); -> 이거 하면 방금 넣은 salaries의 pk를 가져오기 때문에 재정의(갱신)하면 안됨
 
     // ----------------------------------------------------------
     // 사원직급테이블 insert

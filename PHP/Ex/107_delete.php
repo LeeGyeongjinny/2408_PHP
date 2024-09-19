@@ -39,5 +39,6 @@ try {
     if(!is_null($conn)) {
         $conn->rollBack();
     }
+    
     echo $th->getMessage();
 }

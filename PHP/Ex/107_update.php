@@ -41,7 +41,6 @@ try {
     }
 
     $conn->commit(); // 커밋 처리
-    
 } catch(Throwable $th) {
     if(!is_null($conn)) {
         $conn->rollback();
