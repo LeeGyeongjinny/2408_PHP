@@ -23,6 +23,7 @@ function my_db_conn() {
     return new PDO($my_dsn, $my_user, $my_password, $my_otp);
     // 인스턴스화해서 객체로 리턴, $conn = my_db_conn 해서 리턴값을 담는 것
     // 처리한 결과를 return new PDO해서 PDO형태로 반환
+    // 설정값을 PDO 인스턴스화
 }
 
 // pdo를 생성해서 단지 전달만 해줌 어딘가에 담는게 아님
