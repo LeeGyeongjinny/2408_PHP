@@ -1,0 +1,45 @@
+.box {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 900;
+    height: 50px;
+}
+
+.title-box:nth-child(1) {
+    margin-top:50px;
+}
+
+.content-box {
+    height: 200px;
+}
+
+.box-title {
+    background-color: #57A0FF;
+    border-radius: 40px 0 0 40px;
+    display: flex; /* 이거 중앙정렬하기위함 */
+    justify-content: center; /* 이거 중앙정렬하기위함 */
+    align-items: center; /* 이거 중앙정렬하기위함 */
+}
+
+.box-content{
+    background: #fff;
+    border-radius: 0 40px 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+}
+
+.box-content > input
+,.box-content > textarea {
+    width: 90%;
+    height: 90%;
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+    resize: none;
+}
+
