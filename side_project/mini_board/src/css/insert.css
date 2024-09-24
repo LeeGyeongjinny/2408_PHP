@@ -1,0 +1,83 @@
+/* .item-box {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    font-size: 1.2rem;
+}
+
+.item {
+    background-color: #57A0FF;
+    color: #fff;
+    padding: 10px;
+    border-radius: 40px 0 0 40px;
+    text-align: center;
+}
+
+.item1 {
+    margin-top: 50px;
+}
+
+.item2 {
+    line-height: 270px;
+}
+
+input, textarea {
+    background-color: #fff;
+    border-radius: 0 40px 40px 0;
+    border: none;
+    resize: none;
+    outline: none;
+    font-size: 1.1rem;
+    padding: 10px;
+} *
+/* 태그명으로 css 하면 다른 곳에 영향을 줄 수도 있음
+여기선 상관없지만 클래스 만들어서 하자 
+.box-content > input {} 이런건 괜찮음*/
+
+/* 수업 */
+
+.box {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 900;
+}
+
+.title-box {
+    height: 50px;
+    margin-top: 50px;
+}
+
+.content-box {
+    height: 200px;
+}
+
+.box-title {
+    background-color: #57A0FF;
+    border-radius: 40px 0 0 40px;
+    display: flex; /* 이거 중앙정렬하기위함 */
+    justify-content: center; /* 이거 중앙정렬하기위함 */
+    align-items: center; /* 이거 중앙정렬하기위함 */
+}
+
+.box-content{
+    background: #fff;
+    border-radius: 0 40px 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-content > input
+,.box-content > textarea {
+    width: 90%;
+    height: 90%;
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+    resize: none;
+}

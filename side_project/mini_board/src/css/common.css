@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: '맑은고딕';
+}
+
+h1 {
+    padding: 20px;
+    text-align: center;
+    font-size: 3rem;
+    color: #57A0FF;
+}
+
+button {
+    background-color: #57A0FF;
+    border-radius: 40px;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0058CC;
+}
+
+.btn-middle {
+    width: 150px;
+    height: 40px;
+}
+
+.btn-small {
+    width: 50px;
+    height: 50px;
+}
+
+a {
+    text-decoration: none; /* 밑줄 없애기*/
+    color: #000;
+}
+
+/* main */
+main {
+    background-color: #BEDAFF;
+    margin: 0 auto;
+    padding: 15px 30px;
+    width: 800px;
+    border-radius: 10px; /* 피그마 20인데 여기선 너무 커보여서 10으로함 */
+}
+
+/* 페이지네이션 */
+.main-footer {
+    margin: 40px 0;
+    text-align: center;
+}
+

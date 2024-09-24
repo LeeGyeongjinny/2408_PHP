@@ -1,0 +1,37 @@
+.main-header {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.2rem;
+}
+
+.box {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 900;
+    height: 50px;
+}
+
+.main-content {
+    margin-top: 20px;
+}
+
+.box-title {
+    background-color: #57A0FF;
+    border-radius: 40px 0 0 40px;
+    display: flex; /* 이거 중앙정렬하기위함 */
+    justify-content: center; /* 이거 중앙정렬하기위함 */
+    align-items: center; /* 이거 중앙정렬하기위함 */
+}
+
+.box-content{
+    background: #fff;
+    border-radius: 0 40px 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+}
+
