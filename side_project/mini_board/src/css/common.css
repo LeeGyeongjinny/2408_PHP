@@ -35,6 +35,11 @@ button:hover {
     height: 50px;
 }
 
+.btn-selected {
+    /* border: 3px solid #006eff; */
+    background-color: #0058CC;
+}
+
 a {
     text-decoration: none; /* 밑줄 없애기*/
     color: #000;

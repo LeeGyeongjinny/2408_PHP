@@ -14,6 +14,8 @@ define("MY_PATH_ROOT", $_SERVER["DOCUMENT_ROOT"]."/"); // 웹서버 document roo
 define("MY_PATH_DB_LIB", MY_PATH_ROOT."lib/db_lib.php"); // DB 라이브러리 path
 // MY_PATH_ROOT = C:\Apache24\htdocs
 // MY_PATH_DB_LIB = C:\Apache24\htdocs\lib\db_lib.php 이 경로를 가짐
+define("MY_PATH_ERROR", MY_PATH_ROOT."error.php"); // 에러 페이지
 
 // ** 로직 관련 설정 **
-define("MY_LIST_COUNT", 5);
+define("MY_LIST_COUNT", 3);
+define("MY_PAGE_BUTTON_COUNT", 5);
