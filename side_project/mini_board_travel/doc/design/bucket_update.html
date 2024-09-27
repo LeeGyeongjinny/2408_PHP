@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/bucket_update.css">
+    <title>Bucket List Update</title>
+</head>
+<body>
+    <header>
+        <div class="head-title">
+            <h1>Travels<span>_버킷리스트 수정</span></h1>
+        </div>
+        <div class="btn-header">
+            <a href="./bucket_detail.html"><button class="btn-top">확인</button></a>
+            <a href="./bucket_detail.html"><button class="btn-top">취소</button></a>
+        </div>
+    </header>
+    <div class="bucket-update">
+        <div class="update-board">
+            <div class="update-left">
+                <div>
+                    <div class="update-title">
+                        <div>올랜도 디즈니랜드</div>
+                    </div>
+                    <div>
+                        <textarea name="bucketlist" id="bucketlist" class="update-content">올랜도 디즈니랜드 가기</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="update-right">
+                <div class="right-top">
+                    <div class="right-top-align">
+                        <label for="country" class="top-left">국가</label>
+                            <select name="country" id="country" class="top-right">
+                                <option value="미국">미국</option>
+                                <option value="한국">한국</option>
+                                <option value="대만">대만</option>
+                                <option value="영국">영국</option>
+                                <option value="프랑스">프랑스</option>
+                                <option value="벨기에">벨기에</option>
+                                <option value="체코">체코</option>
+                                <option value="이탈리아">이탈리아</option>
+                                <option value="일본">일본</option>
+                                <option value="중국">중국</option>
+                                <option value="태국">태국</option>
+                                <option value="호주">호주</option>
+                                <option value="스페인">스페인</option>
+                                <option value="포르투갈">포르투갈</option>
+                                <option value="캐나다">캐나다</option>
+                                <option value="스위스">스위스</option>
+                                <option value="헝가리">헝가리</option>
+                                <option value="오스트리아">오스트리아</option>
+                                <option value="아이슬란드">아이슬란드</option>
+                            </select>
+                    </div>
+                    <div class="right-top-align">
+                        <div class="top-left">분류</div>
+                        <div class="top-right">
+                            <select name="sort" id="sort" class="top-right">
+                                <option value="관광">관광</option>
+                                <option value="먹방">먹방</option>
+                                <option value="쇼핑">쇼핑</option>
+                                <option value="체험">체험</option>
+                                <option value="기타">기타</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-bottom">
+                    <div class="bottom-info">
+                        <div>정보</div>
+                    </div>
+                    <div class="bottom-content">
+                        <img src="./image/olando_disneyland.webp" alt="" class="bottom-info-image">
+                        <textarea readonly name="botton-content-info" id="botton-content-info" class="bottom-content2">https://disneyparks.disney.go.com/kr/disneyworld/</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

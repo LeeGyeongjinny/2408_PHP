@@ -2,34 +2,106 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Cafe24Supermagic-Bold-v1.0';
 }
 
-/* @font-face {
-    font-family: 'HS-Regular';
-    src: url('https://gcore.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/HS-Regular.woff') format('woff');
-    font-weight: normal;
+@font-face {
+    font-family: 'Cafe24Supermagic-Bold-v1.0';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/Cafe24Supermagic-Bold-v1.0.woff2') format('woff2');
+    font-weight: 700;
     font-style: normal;
-} */
+}
 
-.btn-top {
+/* header */
+header {
+    margin: 0 auto;
+    width: 1000px;
+    color: #435467;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 5rem;
+}
+
+.head-title span {
+    font-size: 2.5rem;
+}
+
+/* button */
+.btn-header {
+    padding: 20px;
+
+}
+
+button {
     background-color: #98B6D8;
     font-size: 1.5rem;
     font-weight: 900;
     border-radius: 50px;
     border: none;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     color: white;
     cursor: pointer;
 }
 
+.btn-top:hover {
+    /* background-color: #0058CC; */
+    background-color: #559EF2;
+}
 
-button:hover {
-    background-color: #0058CC;
-
+.btn-footer:hover {
+    background-color: #408CE3;
 }
 
 a {
-    text-decoration: none; /* 밑줄 없애기*/
-    color: #000;
+    text-decoration: none;
+}
+
+
+
+/* main */
+main {
+    width: 1000px;
+    min-height: 600px;
+    background-color: #E3F0FF;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.main-board {
+    display: grid;
+    grid-template-rows: 60px 1fr;
+}
+
+.main-board1 {
+    background-color: #6FB2FF;
+    border-radius: 50px 50px 0 0;
+}
+
+.main-board2 {
+    background-color: #FFF;
+    border-radius: 0 0 50px 50px;
+    min-height: 400px;
+    padding: 10px;
+}
+
+select, input {
+    border: none;
+    text-align: center;
+    padding: 5px;
+}
+
+textarea {
+    border: none;
+}
+
+/* 페이지네이션 */
+.main-footer {
+    margin: 20px 0 0 0;
+    text-align: center;
 }

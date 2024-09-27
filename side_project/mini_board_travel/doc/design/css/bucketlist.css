@@ -1,0 +1,44 @@
+.main-bucket {
+    width: 1000px;
+    min-height: 600px;
+    background-color: #E3F0FF;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.bucket-board {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px 100px;
+    gap: 30px;
+}
+
+.bucket_board1 {
+    background-color: #6FB2FF;
+    border-radius: 50px 50px 0 0;
+    width: 280px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.bucket_board2 {
+    width: 280px;
+    height: 160px;
+    background-color: #FFF;
+    border-radius: 0 0 50px 50px;
+    padding: 10px;
+    line-height: 40px;
+    font-weight: 550;
+    color: #000;
+}
+
+.bucket_board2 span {
+    background-color: #E3F0FF;
+    margin-right: 5px;
+    padding: 10px;
+    border-radius: 20px;
+}
