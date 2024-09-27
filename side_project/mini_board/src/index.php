@@ -69,7 +69,7 @@ try {
 </head>
 <body>
     <?php 
-    require_once(MY_PATH_ROOT."/header.php");
+    require_once(MY_PATH_ROOT."header.php");
     ?>
     <main>
         <div class="main-top">

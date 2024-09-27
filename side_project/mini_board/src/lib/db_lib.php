@@ -21,10 +21,12 @@ function my_board_select_pagination(PDO $conn, array $arr_param) {
         " SELECT "
         ."    * "
         ." FROM "
-        ."    board "
+        ."      board "
+        ." WHERE "
+        ."      deleted_at IS NULL "    
         ." ORDER BY "
-        ."    created_at DESC " // 최신순 정렬
-        ."    ,id DESC "
+        ."      created_at DESC " // 최신순 정렬
+        ."      ,id DESC "
         ." LIMIT :list_cnt OFFSET :offset "
     ;
 
@@ -115,15 +117,16 @@ function my_board_select_id(PDO $conn, array $arr_param){
 }
 
 /**
- * update
+ * board 테이블 update
  */
-function my_board_update_id(PDO $conn, array $arr_param){
+function my_board_update(PDO $conn, array $arr_param){
     $sql = 
         " UPDATE "
         ."      board "
         ." SET "
         ."      title = :title "
         ."      ,content = :content "
+        ."      ,updated_at = NOW() "
         ." WHERE "
         ."      id = :id "
     ;
@@ -147,16 +150,24 @@ function my_board_update_id(PDO $conn, array $arr_param){
 
 
 /**
- * delete
+ * board 테이블 레코드 삭제
  */
 function my_board_delete_id(PDO $conn, array $arr_param){
+    // $sql = 
+    //     " DELETE FROM "
+    //     ."      board "
+    //     ." WHERE "
+    //     ."      id = :id "
+    // ;
+
     $sql = 
-        " DELETE FROM "
-        ."      board "
+        " UPDATE board "
+        ." SET "
+        ."      updated_at = NOW() "
+        ."      ,deleted_at = NOW() "
         ." WHERE "
         ."      id = :id "
     ;
-
     
     $stmt = $conn->prepare($sql);
     $result_flg = $stmt->execute($arr_param);
@@ -171,5 +182,5 @@ function my_board_delete_id(PDO $conn, array $arr_param){
         throw new Exception("Delete Count 이상");
     }
 
-    return $stmt->fetch();
+    return true;
 }

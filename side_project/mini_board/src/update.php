@@ -29,10 +29,7 @@ try {
             "id" => $id
         ];
 
-
-    
         $result = my_board_select_id($conn, $arr_prepare);
-
 
     } else {
         // POST 처리
@@ -49,7 +46,6 @@ try {
         // content 획득
         $content = isset($_POST["content"]) ? (string)$_POST["content"] : "";
 
-
         if($id < 1 || $title === "") {
             throw new Exception("파라미터 오류임");
         }
@@ -61,24 +57,32 @@ try {
         $conn->beginTransaction();
 
         $arr_prepare = [
-            "title" => $title
+            "id" => $id
+            ,"title" => $title
             ,"content" => $content
-            ,"id" => $id
         ];
 
+        my_board_update($conn, $arr_prepare);
+        // $result = my_board_update($conn, $arr_prepare); 리턴값이 딱히 필요없다?
 
-        $result = my_board_update_id($conn, $arr_prepare);
-
+        // commit
         $conn->commit();
+        
+        // detail page로 이동
         header("Location: /detail.php?id=".$id."&page=".$page);
-        exit;
+        exit; // 안써도 되지만 불필요한 리소스 실행방지를 위해 씀
     }
     
 
 } catch(Throwable $th) {
-    if(!is_null($conn)) {
+    if(!is_null($conn) && $conn->inTransaction()) {
         $conn->rollBack();
     }
+    // transaction이 시작되어야 rollback가능
+    // transaction전 에러는 rollback 어떻게 하나
+    // inTransaction transaction이 시작됐을때 rollback
+    // if문 안에 순서 바뀌면 안됨 (앞에 있는거 체크하고 뒤에 있는거 체크하는 순서라)
+
     require_once(MY_PATH_ERROR);
     exit;
 }
@@ -98,12 +102,16 @@ try {
 </head>
 <body>
     <?php 
-    require_once(MY_PATH_ROOT."/header.php");
+    require_once(MY_PATH_ROOT."header.php");
     ?>
     <main>
         <form action="/update.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $result["id"]?>">
-            <input type="hidden" name="page" value="<?php echo $page?>">
+            <!-- action update.php인 이유
+                버튼을 눌렀을 때 이동해야하는 곳이 update
+                update이동 후 post타입으로 전송해서 처리하고 header로 detail로 간다
+            -->
+            <input type="hidden" name="id" value="<?php echo $result["id"] ?>">
+            <input type="hidden" name="page" value="<?php echo $page ?>">
             <div class="box title-box">
                 <div class="box-title ">글 번호</div>
                 <div class="box-content"><?php echo $result["id"]?></div>
@@ -111,18 +119,18 @@ try {
             <div class="box">
                 <div class="box-title ">제목</div>
                 <div class="box-content">
-                    <input type="text" name="title" id="title" value="<?php echo $result["title"]?>">
+                    <input type="text" name="title" id="title" value="<?php echo $result["title"] ?>">
                 </div>
             </div>
             <div class="box content-box">
                 <div class="box-title">내용</div>
                 <div class="box-content">
-                    <textarea name="content" id="content"><?php echo $result["content"]?></textarea>
+                    <textarea name="content" id="content"><?php echo $result["content"] ?></textarea>
                 </div>
             </div>
             <div class="main-footer">
                 <button type="submit" class="btn-small">완료</button>
-                <a href="/detail.php?id=<?php echo $result["id"]?>&page=<?php echo $page ?>"><button type="button" class="btn-small">취소</button></a>
+                <a href="/detail.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button type="button" class="btn-small">취소</button></a>
             </div>
         </form>
     </main>

@@ -2,6 +2,8 @@
 require_once($_SERVER["DOCUMENT_ROOT"]."/config.php"); // config.php파일을 가리킴
 require_once(MY_PATH_DB_LIB); // MY_PATH_DB_LIB = C:\Apache24\htdocs\lib\db_lib.php 이 경로를 가짐
 
+$conn = null;
+
 // post 처리
 if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
     try{
@@ -33,6 +35,8 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
     }
 }
 
+// insert는 단순 출력이라 get으로 분기하지 않았지만 전송할때는 post여야하기때문에 post만 처리해줬다?
+
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +50,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
 </head>
 <body>
     <?php 
-    require_once(MY_PATH_ROOT."/header.php");
+    require_once(MY_PATH_ROOT."header.php");
     ?>
     <main>
         <form action="/insert.php" method="post">

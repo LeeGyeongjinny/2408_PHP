@@ -45,25 +45,25 @@ try {
 </head>
 <body>
     <?php 
-    require_once(MY_PATH_ROOT."/header.php");
+    require_once(MY_PATH_ROOT."header.php");
     ?>
     <main>
         <div class="main-content">
             <div class="box">
                 <div class="box-title ">게시글 번호</div>
-                <div class="box-content"><?php echo $result["id"]?></div>
+                <div class="box-content"><?php echo $result["id"] ?></div>
             </div>
             <div class="box">
                 <div class="box-title">제목</div>
-                <div class="box-content"><?php echo $result["title"]?></div>
+                <div class="box-content"><?php echo $result["title"] ?></div>
             </div>
             <div class="box">
                 <div class="box-title">내용</div>
-                <div class="box-content"><?php echo $result["content"]?></div>
+                <div class="box-content"><?php echo $result["content"] ?></div>
             </div>
             <div class="box">
                 <div class="box-title">작성일자</div>
-                <div class="box-content"><?php echo $result["created_at"]?></div>
+                <div class="box-content"><?php echo $result["created_at"] ?></div>
             </div>
             <div class="main-footer">
                 <a href="/update.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button type="button" class="btn-small">수정</button></a>
