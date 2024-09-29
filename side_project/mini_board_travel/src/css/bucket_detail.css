@@ -1,4 +1,4 @@
-.bucket-update {
+.bucket-detail {
     width: 1000px;
     min-height: 600px;
     background-color: #E3F0FF;
@@ -6,18 +6,18 @@
     padding: 40px;
 }
 
-.update-board {
+.detail-board {
     display: grid;
     grid-template-columns: 650px 1fr;
 }
 
-.update-left{
+.detail-left{
     display: grid;
     grid-template-rows: 60px 460px;
     gap: 0px;
 }
 
-.update-title{
+.detail-title{
     background-color: #6FB2FF;
     border-radius: 50px 50px 0 0;
     width: 600px;
@@ -29,17 +29,17 @@
     font-weight: 900;
 }
 
-.update-content{
+.detail-content{
     width: 600px;
     height: 460px;
-    background-color: #F9F9F9;
+    background-color: #FFF;
     border-radius: 0 0 50px 50px;
-    font-size: 1.5rem;
     padding: 10px 20px;
+    font-size: 1.5rem;
     resize: none;
 }
 
-.update-right{
+.detail-right{
     display: grid;
     grid-template-rows: 150px 350px;
 }
@@ -47,7 +47,6 @@
 .right-top{
     display: grid;
     grid-template-rows: 1fr 1fr;
-    color: #fff;
     font-size: 1.3rem;
     font-weight: 900;
 }
@@ -107,7 +106,7 @@
 .bottom-content2 {
     width: 250px;
     height: 150px;
-    background-color: #F9F9F9;
+    background-color: #FFF;
     border-radius: 0 0 50px 50px;    
     font-size: 1.2rem;
     padding: 10px 20px;

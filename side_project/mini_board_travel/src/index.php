@@ -1,3 +1,21 @@
+<?php
+require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
+require_once(MY_PATH_DB_LIB);
+
+$conn = null;
+
+try {
+    $conn = my_db_conn();
+
+} catch(Throwable$th) {
+    require_once(MY_PATH_ROOT."error.php");
+    exit;
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,8 +35,8 @@
                 <span></span>
                 <span></span>
                 <ul class="menu">
-                    <a href="./main.html"><li>기록</li></a>
-                    <a href="./bucketlist.html"><li>버킷리스트</li></a>
+                    <a href="/main.php"><li>기록</li></a>
+                    <a href="/bucketlist.php"><li>버킷리스트</li></a>
                 </ul>
             </div>
         </nav>

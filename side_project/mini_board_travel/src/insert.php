@@ -1,3 +1,46 @@
+<?php
+require_once($_SERVER["DOCUMENT_ROOT"]."/config.php"); // config.php파일을 가리킴
+require_once(MY_PATH_DB_LIB); // MY_PATH_DB_LIB = C:\Apache24\htdocs\lib\db_lib.php 이 경로를 가짐
+
+$conn = null;
+
+// post 처리
+if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
+    try{
+        // PDO Instance
+        $conn = my_db_conn();
+
+        // insert 처리
+        $arr_prepare = [
+            "title" => $_POST["title"]
+            ,"content" => $_POST["content"]
+        ];
+
+        // begin transaction
+        $conn->beginTransaction();
+        my_board_insert($conn, $arr_prepare);
+
+        $conn->commit();      
+
+        // 처리끝나면 index로 넘어가게
+        header("Location: /"); // /루트로 가면 index.php
+        exit;
+
+    } catch(Throwable $th) {
+        if(!is_null($conn)) {
+            $conn->rollBack();
+        }
+        require_once(MY_PATH_ERROR); // config에 작성한 에러페이지 상수
+        exit;
+    }
+}
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,17 +51,17 @@
     <title>Travel Insert</title>
 </head>
 <body>
-    <form action="./main.html">
-        <header>
-            <div class="head-title">
-                <a href="./main.html"><h1>Travels<span>_작성</span></h1></a>
-            </div>
-            <div class="btn-header">
-                <a href="./main.html"><button type="submit" class="btn-top">작성</button></a>
-                <a href="./main.html"><button type="button" class="btn-top">취소</button></a>
-            </div>
-        </header>
-        <main>
+    <header>
+        <div class="head-title">
+            <a href="/main.php"><h1>Travels<span>_작성</span></h1></a>
+        </div>
+        <div class="btn-header">
+            <a href="/main.php"><button type="submit" class="btn-top">작성</button></a>
+            <a href="/main.php"><button type="button" class="btn-top">취소</button></a>
+        </div>
+    </header>
+    <main>
+        <form action="/main.php" method="post">
             <div class="main-board">
                 <div class="main-board1">
                     <div class="insert-title">
@@ -30,8 +73,6 @@
                         <div class="insert-left">
                             <div class="insert-info">
                                 <label for="country" class="insert-info1">국가</label>
-                                <input type="text" name="country" id="country" class="insert-info2" required>
-                                <!-- <label for="country" class="insert-info1">국가</label>
                                 <select name="country" id="country" class="insert-info2">
                                     <option value="미국">미국</option>
                                     <option value="한국">한국</option>
@@ -52,12 +93,10 @@
                                     <option value="헝가리">헝가리</option>
                                     <option value="오스트리아">오스트리아</option>
                                     <option value="아이슬란드">아이슬란드</option>
-                                </select> -->
+                                </select>
                             </div>
                             <div class="insert-info">
                                 <label for="city" class="insert-info1">도시</label>
-                                <input type="text" name="city" id="city" class="insert-info2" required>
-                                <!-- <label for="city" class="insert-info1">도시</label>
                                 <select name="city" id="city" class="insert-info2">
                                     <option value="올랜도">올랜도</option>
                                     <option value="서울">서울</option>
@@ -106,7 +145,7 @@
                                     <option value="취리히">취리히</option>
                                     <option value="잘츠부르크">잘츠부르크</option>
                                     <option value="레이캬비크">레이캬비크</option>
-                                </select> -->
+                                </select>
                             </div>
                             <div class="insert-info">
                                 <label for="departure" class="insert-info1">출발</label>
@@ -128,8 +167,7 @@
                             <div class="insert-info">
                                 <label class="insert-info1">사진</label>
                                 <input type="file" id="photo1" accept="image/png, image/jpeg" class="insert-info2"></input>
-                                <!-- <div class="insert-info1">사진</div>
-                                <div class="insert-info2"></div> -->
+
                             </div>
 
                         </div>
@@ -139,21 +177,11 @@
                                 <textarea  class="insert-content" placeholder="여기엔 내용"></textarea>
                             </div>
                         </div>
-                        <!-- <div class="insert-right">
-                            <div class="insert-photo">
-                                <label class="insert-info1">사진</label>
-                                <input type="file" id="photo1" accept="image/png, image/jpeg" class="insert-photo-content"></input>
-                            </div>
-                            <div class="insert-photo">
-                                <div class="insert-photo-title">사진</div>
-                                <input type="file" id="photo1" accept="image/png, image/jpeg" class="insert-photo-content"></input>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
-            
-        </main>
-    </form>
+        </form>
+
+    </main>
 </body>
 </html>
