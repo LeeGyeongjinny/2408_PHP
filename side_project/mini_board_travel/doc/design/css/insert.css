@@ -1,8 +1,16 @@
 .insert-title {
     text-align: center;
+    /* font-weight: 900;
+    font-size: 1.6rem; */
+    padding: 15px;
+}
+
+.insert-title input{
     font-weight: 900;
     font-size: 1.6rem;
-    padding: 15px;
+    background: transparent;
+    outline: none;
+    width: 700px;
 }
 
 .main-board-grid {

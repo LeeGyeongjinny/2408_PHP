@@ -67,13 +67,15 @@ function my_board_total_count(PDO $conn) {
  */
 function my_board_insert(PDO $conn, array $arr_param) {
     $sql =
-        " INSERT INTO board ( "
+        " INSERT INTO travel_boards ( "
         ."      country "
         ."      ,city "
         ."      ,departure "
         ."      ,arrival "
         ."      ,title "
         ."      ,content "
+        ."      ,img_1 "
+        ."      ,img_2 "
         ." ) "
         ." VALUES( "
         ."      :country "
@@ -82,6 +84,8 @@ function my_board_insert(PDO $conn, array $arr_param) {
         ."      ,:arrival "
         ."      ,:title "
         ."      ,:content"
+        ."      ,:img_1 "
+        ."      ,:img_2 "
         ." ) "
     ;
 
@@ -96,6 +100,94 @@ function my_board_insert(PDO $conn, array $arr_param) {
 
     if($result_cnt !== 1) {
         throw new Exception("Inset Count 이상");
+    }
+
+    return true;
+}
+
+
+/**
+ * id로 게시글 조회
+ */
+function my_board_select_id(PDO $conn, array $arr_param){
+    $sql = 
+        " SELECT "
+        ."      * "
+        ." FROM "
+        ."      travel_boards "
+        ." WHERE "
+        ."      id = :id "
+    ;
+
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+
+    return $stmt->fetch();
+}
+
+
+
+/**
+ * board 테이블 update
+ */
+function my_board_update(PDO $conn, array $arr_param){
+    $sql = 
+        " UPDATE "
+        ."      travel_boards "
+        ." SET "
+        ."      title = :title "
+        ."      ,content = :content "
+        ."      ,updated_at = NOW() "
+        ." WHERE "
+        ."      id = :id "
+    ;
+
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+    
+    $result_cnt = $stmt->rowCount();
+
+    if($result_cnt !== 1) {
+        throw new Exception("Update Count 이상");
+    }
+
+    return $stmt->fetch();
+}
+
+
+
+/**
+ * board 테이블 레코드 삭제
+ */
+function my_board_delete_id(PDO $conn, array $arr_param){
+    $sql = 
+        " UPDATE travel_boards "
+        ." SET "
+        ."      updated_at = NOW() "
+        ."      ,deleted_at = NOW() "
+        ." WHERE "
+        ."      id = :id "
+    ;
+    
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+    
+    $result_cnt = $stmt->rowCount();
+
+    if($result_cnt !== 1) {
+        throw new Exception("Delete Count 이상");
     }
 
     return true;

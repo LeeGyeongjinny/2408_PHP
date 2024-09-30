@@ -58,7 +58,7 @@ try {
 <body>
     <header>
         <div class="head-title">
-            <a href="/123.php"><h1>Travels<span>_기록</span></h1></a>
+            <a href="/main.php"><h1>Travels<span>_기록</span></h1></a>
         </div>
         <div class="btn-header">
             <a href="/index.php"><button class="btn-top">홈</button></a>
