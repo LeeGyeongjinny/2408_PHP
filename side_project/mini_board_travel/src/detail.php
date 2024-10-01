@@ -8,7 +8,6 @@ try {
 
     $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0;
 
-    
     $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
 
 
@@ -80,7 +79,6 @@ try {
                             <div class="detail-info1">출발</div>
                             <div class="detail-info2"><?php echo $result["departure"] ?></div>
                         </div>
-
                         <div class="detail-info">
                             <div class="detail-info1">도착</div>
                             <div class="detail-info2"><?php echo $result["arrival"] ?></div>
@@ -90,8 +88,8 @@ try {
                             <div class="detail-info2"><?php echo $result["companion"] ?></div>
                         </div>
                         <div class="detail-info">
-                            <div class="detail-info1">작성일</div>
-                            <div class="detail-info2"><?php echo $result["created_at"] ?></div>
+                            <div class="detail-info1 detail-date">작성일</div>
+                            <div class="detail-info2 detail-date"><?php echo $result["created_at"] ?></div>
                         </div>
                     </div>
                     <div>
@@ -113,7 +111,6 @@ try {
                 </div>
             </div>
         </div>
-
     </main>
 </body>
 </html>

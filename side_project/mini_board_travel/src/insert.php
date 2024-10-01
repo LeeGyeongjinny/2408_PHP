@@ -1,30 +1,9 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
 require_once(MY_PATH_DB_LIB);
+require_once(MY_PATH_COMMON_FNC);
 
 $conn = null;
-
-function my_save_img($file) {
-    if($file["name"] === "") {
-        $result_path = null;
-    } else {
-        $file_type = $file["type"];
-        // type "image/webp" 가져옴
-        $file_type_arr = explode("/", $file_type);
-        // type을 explode써서 배열로 가져옴 (/기준으로 방 나뉨)
-        $extension = $file_type_arr[1];
-        // 배열중에 1번방 -> 확장자명
-        $file_name = uniqid().".".$extension;
-        // unique한 배열 랜덤으로 가져옴.확장자명
-        $file_path = "img/".$file_name;
-        
-        move_uploaded_file($file["tmp_name"], MY_PATH_ROOT.$file_path);
-
-        $result_path = "/".$file_path;
-    }
-
-    return $result_path;
-}
 
 // post 처리
 if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
@@ -33,7 +12,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
         $conn = my_db_conn();
 
         // $file = $_FILES["upload_file1"];
-        // // $file2 = $_FILES["upload_file2"];
+        // $file2 = $_FILES["upload_file2"];
         
         // $file_type = $file["type"];
         // $file_type_arr = explode("/", $file_type);
@@ -43,6 +22,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
         
         // move_uploaded_file($_FILES["tmp_name"], MY_PATH_ROOT.$file_path);
 
+        
         $file_path_1 = my_save_img($_FILES["upload_file1"]);
         $file_path_2 = my_save_img($_FILES["upload_file2"]);
 
@@ -53,32 +33,16 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
             ,"city" => $_POST["city"]
             ,"departure" => $_POST["departure"]
             ,"arrival" => $_POST["arrival"]
+            ,"companion" => $_POST["companion"]
             ,"title" => $_POST["title"]
             ,"content" => $_POST["content"]
             ,"img_1" => $file_path_1
             ,"img_2" => $file_path_2
         ];
 
-        // for($i = 1;$i <= 2; $i++) {
-
-   
-        //     if($_POST['upload']=="upload"){
-        //         if(move_uploaded_file($file['tmp_name'],$path.$file['name'])){
-        //         echo "Upload success!";
-        //         }
-        //         else {
-        //         echo "Upload fail..";
-        //         }
-        //     }
-        // }
-
-        // $upload_file1 = $_FILES['upload_file1']['name'];
-        // $target='images/'.$upload_file1;
-        // $upload_file1_type = $_FILES['upload_file1']['name'];
-        // $upload_file1_size = $_FILES['upload_file1']['tmp_name'];
-        // $tmp_name = $_FILES['upload_file1']['error'];
-
-        // move_uploaded_file($tmp_name, $target);
+        if($_POST["companion"] === "") {
+            $arr_prepare["companion"] = null;
+        }
 
 
         // begin transaction
@@ -87,15 +51,14 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
         
         $conn->commit();      
 
-        // 처리끝나면 index로 넘어가게
-        header("Location: /main.php"); // /루트로 가면 index.php
+        header("Location: /main.php");
         exit;
 
     }catch(Throwable $th) {
         if(!is_null($conn)) {
             $conn->rollBack();
         }
-        require_once(MY_PATH_ERROR); // config에 작성한 에러페이지 상수
+        require_once(MY_PATH_ERROR);
         exit;
     }
 }
@@ -122,7 +85,8 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
                 <a href="/main.php"><h1>Travels<span>_작성</span></h1></a>
             </div>
             <div class="btn-header">
-                <button type="submit" class="btn-top" value="upload" name="upload">작성</button>
+                <button type="submit" class="btn-top">작성</button>
+                <!-- <button type="submit" class="btn-top" value="upload" name="upload">작성</button> -->
                 <a href="/main.php"><button type="button" class="btn-top">취소</button></a>
             </div>
         </header>
@@ -130,7 +94,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
             <div class="main-board">
                 <div class="main-board1">
                     <div class="insert-title">
-                    <input type="text" placeholder="제목" name="title" required></input>
+                        <input type="text" placeholder="제목" name="title" required>
                     </div>
                 </div>
                 <div class="main-board2">
@@ -168,7 +132,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
                         <div class="insert-content-box">
                             <div class="insert-content-title">내용</div>
                             <div>
-                                <textarea  class="insert-content" placeholder="여기엔 내용" name="content" required></textarea>
+                                <textarea  class="insert-content" placeholder="내용" name="content" required></textarea>
                             </div>
                         </div>
                     </div>

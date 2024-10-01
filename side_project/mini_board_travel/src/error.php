@@ -15,10 +15,10 @@ require_once(MY_PATH_DB_LIB);
 <body>
     <header>
         <div class="head-title">
-            <a href="/main.php"><h1>Travels<span>_에러</span></h1></a>
+            <a href="/"><h1>Travels<span>_에러</span></h1></a>
         </div>
         <div class="btn-header">
-            <a href="/index.php"><button class="btn-top">홈</button></a>
+            <a href="/"><button class="btn-top">홈</button></a>
         </div>
     </header>
     <main>

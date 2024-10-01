@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
 require_once(MY_PATH_DB_LIB);
+require_once(MY_PATH_COMMON_FNC);
 
 $conn = null;
 
@@ -8,10 +9,8 @@ try {
     if(strtoupper($_SERVER["REQUEST_METHOD"]) === "GET") {
         // GET 처리
         
-        // id 획득
         $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0;
         
-        // page 획득
         $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
 
         if($id < 1) {
@@ -37,14 +36,20 @@ try {
         // --------------------
         // parameter 획득
         // --------------------
-        // id 획득
+
         $id = isset($_POST["id"]) ? (int)$_POST["id"] : 0;
-        // page 획득
         $page = isset($_POST["page"]) ? (int)$_POST["page"] : 1;
-        // title 획득
         $title = isset($_POST["title"]) ? (string)$_POST["title"] : "";
-        // content 획득
         $content = isset($_POST["content"]) ? (string)$_POST["content"] : "";
+        
+        $country = isset($_POST["country"]) ? (string)$_POST["country"] : "";
+        $city = isset($_POST["city"]) ? (string)$_POST["city"] : "";
+        $departure = isset($_POST["departure"]) ? $_POST["departure"] : "";
+        $arrival = isset($_POST["arrival"]) ? $_POST["arrival"] : "";
+        $companion = isset($_POST["companion"]) ? (string)$_POST["companion"] : "";
+        $img_1 = $_FILES["upload_file1"];
+        $img_2 = $_FILES["upload_file2"];
+
 
         if($id < 1 || $title === "") {
             throw new Exception("파라미터 오류임");
@@ -60,17 +65,28 @@ try {
             "id" => $id
             ,"title" => $title
             ,"content" => $content
+            ,"country" => $country
+            ,"city" => $city
+            ,"departure" => $departure
+            ,"arrival" => $arrival
+            ,"companion" => $companion
         ];
 
+        if($img_1["name"] !== "" ) {
+            $arr_prepare["img_1"] = my_save_img($_FILES["upload_file1"]);
+        }
+        
+        if($img_2["name"] !== "" ) {
+            $arr_prepare["img_2"] = my_save_img($_FILES["upload_file2"]);
+        }
+        
         my_board_update($conn, $arr_prepare);
-        // $result = my_board_update($conn, $arr_prepare); 리턴값이 딱히 필요없다?
 
         // commit
         $conn->commit();
         
-        // detail page로 이동
         header("Location: /detail.php?id=".$id."&page=".$page);
-        exit; // 안써도 되지만 불필요한 리소스 실행방지를 위해 씀
+        exit; 
     }
     
 
@@ -78,10 +94,6 @@ try {
     if(!is_null($conn) && $conn->inTransaction()) {
         $conn->rollBack();
     }
-    // transaction이 시작되어야 rollback가능
-    // transaction전 에러는 rollback 어떻게 하나
-    // inTransaction transaction이 시작됐을때 rollback
-    // if문 안에 순서 바뀌면 안됨 (앞에 있는거 체크하고 뒤에 있는거 체크하는 순서라)
 
     require_once(MY_PATH_ERROR);
     exit;
@@ -99,21 +111,23 @@ try {
     <title>Travel Update</title>
 </head>
 <body>
-    <form action="/detail.php" method="post">
+    <form action="/update.php" method="post" enctype="multipart/form-data">
         <header>
             <div class="head-title">
                 <a href="/main.php"><h1>Travels<span>_수정</span></h1></a>
             </div>
             <div class="btn-header">
-                <a href="/detail.php"><button class="btn-top">확인</button></a>
-                <a href="/detail.php"><button class="btn-top">취소</button></a>
+                <button type="submit" class="btn-top">확인</button>
+                <a href="/detail.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button type="button" class="btn-top">취소</button></a>
             </div>
         </header>
         <main>
+            <input type="hidden" name="id" value="<?php echo $result["id"] ?>">
+            <input type="hidden" name="page" value="<?php echo $page ?>">
             <div class="main-board">
                 <div class="main-board1">
                     <div class="update-title">
-                        <input type="text" value="<?php echo $result["title"] ?>">
+                        <input type="text" name="title" value="<?php echo $result["title"] ?>">
                     </div>
                 </div>
                 <div class="main-board2">
@@ -133,36 +147,40 @@ try {
                             </div>
                             <div class="update-info">
                                 <label for="departure" class="update-info1">출발</label>
-                                <input type="date" id="departure" max="2077-06-20" min="1995-10-21" value="<?php echo $result["departure"] ?>" class="update-info2">
+                                <input type="date" name="departure" id="departure" max="2077-06-20" min="1995-10-21" value="<?php echo $result["departure"] ?>" class="update-info2">
                             </div>
                             <div class="update-info">
                                 <label for="arrival" class="update-info1">도착</label>
-                                <input type="date" id="arrival" max="2077-06-20" min="1995-10-21" value="<?php echo $result["arrival"] ?>" class="update-info2">
+                                <input type="date" name="arrival" id="arrival" max="2077-06-20" min="1995-10-21" value="<?php echo $result["arrival"] ?>" class="update-info2">
                             </div>
                             <div class="update-info">
                                 <div class="update-info1">동행</div>
-                                <div class="update-info2"><?php echo $result["companion"] ?></div>
+                                <div class="update-info2" name="companion"><?php echo $result["companion"] ?></div>
                             </div>
                             <div class="update-info">
-                                <div class="update-info1">작성일</div>
-                                <div class="update-info2"><?php echo $result["created_at"] ?></div>
+                                <div class="update-info1 update-date">작성일</div>
+                                <div class="update-info2 update-date" name="created_at"><?php echo $result["created_at"] ?></div>
                             </div>
                         </div>
                         <div>
                             <div class="update-content-title">내용</div>
                             <div>
-                                <textarea class="update-content"><?php echo $result["content"] ?></textarea>
+                                <textarea class="update-content" name="content"><?php echo $result["content"] ?></textarea>
                             </div>
                         </div>
                         <div class="update-right">
                             <div>
                                 <div class="update-photo-title">사진</div>
-                                <div class="update-photo"><img src="<?php echo $result["img_1"] ?>" alt="" class="top-info-image"></div>
+                                <div class="update-photo">
+                                    <img src="<?php echo $result["img_1"] ?>" alt="" class="info-image"  name="img_1">
+                                    <input type="file" id="photo1" name="upload_file1">
+                                </div>
                             </div>
                             <div>
                                 <div class="update-photo-title">사진</div>
                                 <div class="update-photo">
-                                    <img src="<?php echo $result["img_2"] ?>" alt="" class="bottom-info-image">
+                                    <img src="<?php echo $result["img_2"] ?>" alt="" class="info-image"  name="img_2">
+                                    <input type="file" id="photo2" name="upload_file2">
                                 </div>
                             </div>
                         </div>

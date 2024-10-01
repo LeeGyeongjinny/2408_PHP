@@ -35,10 +35,13 @@ h1 {
     font-size: 2.5rem;
 }
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #F9F9F9 inset;
+}
+
 /* button */
 .btn-header {
     padding: 20px;
-
 }
 
 button {
@@ -70,6 +73,9 @@ a {
     width: 150px;
 }
 
+.btn-selected {
+    background-color: #6FB2FF;
+}
 
 /* main */
 main {

@@ -29,6 +29,9 @@ CREATE TABLE bucket_lists(
 	,sort 				VARCHAR(15)					NOT NULL
 	,info_content 		VARCHAR(100)
 	,info_img 			VARCHAR(600)
+	,created_at	 		TIMESTAMP					NOT NULL 		DEFAULT	CURRENT_TIMESTAMP()
+	,updated_at	 		TIMESTAMP					NOT NULL 		DEFAULT	CURRENT_TIMESTAMP()
+	,deleted_at			TIMESTAMP
 );
 
 INSERT INTO travel_boards(

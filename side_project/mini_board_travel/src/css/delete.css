@@ -63,6 +63,10 @@ h2 {
     font-size: 1.2rem;
 }
 
+.delete-date{
+    height: 80px;
+}
+
 .delete-content-title {
     background-color: #98B6D8;
     width: 400px;

@@ -5,7 +5,7 @@
     padding: 15px;
 }
 
-.updqte-title input{
+.update-title input{
     font-weight: 900;
     font-size: 1.6rem;
     background: transparent;
@@ -51,6 +51,10 @@
     font-size: 1.2rem;
 }
 
+.update-date{
+    height: 80px;
+}
+
 .update-content-title {
     background-color: #98B6D8;
     width: 400px;
@@ -75,6 +79,7 @@
 
 .update-right{
     display: grid;
+    grid-template-rows: 1fr 1fr;
     gap: 10px;
 }
 
@@ -96,14 +101,11 @@
     border-radius: 0 0 30px 30px;
 }
 
-.top-info-image{
+.update-photo input {
     width: 180px;
-    height: 130px;
-    margin: 10px;
 }
 
-.bottom-info-image{
+.info-image{
     width: 180px;
     height: 130px;
-    margin: 10px;
 }

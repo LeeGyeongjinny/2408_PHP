@@ -43,7 +43,6 @@ try {
         // --------------------
         // id 획득
         $id = isset($_POST["id"]) ? (int)$_POST["id"] : 0;
-        // page는 어차피 1페이지로 갈거라 필요없음
 
         if($id < 1) {
             throw new Exception("파라미터 오류");
@@ -67,7 +66,7 @@ try {
         
 
         // 리스트 페이지로 이동
-        header("Location: /"); // / 루트로 가면 / 또는 /index.php 둘다 가능
+        header("Location: /main.php");
         exit;
     }
     
@@ -93,77 +92,78 @@ try {
     <title>Travel Delete</title>
 </head>
 <body>
-    <form action="/main.php" method="post">
-        <header>
-            <div class="head-title">
-                <a href="/main.php"><h1>Travels<span>_삭제</span></h1></a>
-            </div>
-            <div class="btn-header">
-                <a href="/main.php"><button class="btn-top btn-top-chk">확인</button></a>
-                <a href="/detail.php"><button class="btn-top">취소</button></a>
-            </div>
-        </header>
-        <main>
-            <div class="main-board">
-                <div class="main-board1">
-                    <div class="delete-title">
-                        <p><?php echo $result["title"] ?></p>
-                    </div>
+    <header>
+        <div class="head-title">
+            <a href="/main.php"><h1>Travels<span>_삭제</span></h1></a>
+        </div>
+        <div class="btn-header">
+            <form action="/delete.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $result["id"]?>">
+                <button type="submit" class="btn-top btn-top-chk">확인</button>
+                <a href="/detail.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button type="button" class="btn-top">취소</button></a>
+            </form>
+        </div>
+    </header>
+    <main>
+        <div class="main-board">
+            <div class="main-board1">
+                <div class="delete-title">
+                    <p><?php echo $result["title"] ?></p>
                 </div>
-                <div class="main-board2">
-                    <div class="main-board-grid">
-                        <div class="delete-left">
-                            <div class="delete-info">
-                                <div class="delete-info1">게시번호</div>
-                                <div class="delete-info2"><?php echo $result["id"] ?></div>
-                            </div>
-                            <div class="delete-info">
-                                <div class="delete-info1">국가</div>
-                                <div class="delete-info2"><?php echo $result["country"] ?></div>
-                            </div>
-                            <div class="delete-info">
-                                <div class="delete-info1">도시</div>
-                                <div class="delete-info2"><?php echo $result["city"] ?></div>
-                            </div>
-                            <div class="delete-info">
-                                <div class="delete-info1">출발</div>
-                                <div class="delete-info2"><?php echo $result["departure"] ?></div>
-                            </div>
-                            <div class="delete-info">
-                                <div class="delete-info1">도착</div>
-                                <div class="delete-info2"><?php echo $result["arrival"] ?></div>
-                            </div>
-                            <div class="delete-info">
-                                <div class="delete-info1">동행</div>
-                                <div class="delete-info2"><?php echo $result["companion"] ?></div>
-                            </div>
-                            <div class="delete-info">
-                                <div class="delete-info1">작성일</div>
-                                <div class="delete-info2"><?php echo $result["created_at"] ?></div>
-                            </div>
-                            
+            </div>
+            <div class="main-board2">
+                <div class="main-board-grid">
+                    <div class="delete-left">
+                        <div class="delete-info">
+                            <div class="delete-info1">게시번호</div>
+                            <div class="delete-info2"><?php echo $result["id"] ?></div>
+                        </div>
+                        <div class="delete-info">
+                            <div class="delete-info1">국가</div>
+                            <div class="delete-info2"><?php echo $result["country"] ?></div>
+                        </div>
+                        <div class="delete-info">
+                            <div class="delete-info1">도시</div>
+                            <div class="delete-info2"><?php echo $result["city"] ?></div>
+                        </div>
+                        <div class="delete-info">
+                            <div class="delete-info1">출발</div>
+                            <div class="delete-info2"><?php echo $result["departure"] ?></div>
+                        </div>
+                        <div class="delete-info">
+                            <div class="delete-info1">도착</div>
+                            <div class="delete-info2"><?php echo $result["arrival"] ?></div>
+                        </div>
+                        <div class="delete-info">
+                            <div class="delete-info1">동행</div>
+                            <div class="delete-info2"><?php echo $result["companion"] ?></div>
+                        </div>
+                        <div class="delete-info">
+                            <div class="delete-info1 delete-date">작성일</div>
+                            <div class="delete-info2 delete-date"><?php echo $result["created_at"] ?></div>
+                        </div>
+                        
+                    </div>
+                    <div>
+                        <div class="delete-content-title">내용</div>
+                        <div>
+                            <textarea readonly class="delete-content"><?php echo $result["content"] ?></textarea>
+                        </div>
+                    </div>
+                    <div class="delete-right">
+                        <div>
+                            <div class="delete-photo-title">사진</div>
+                            <div class="delete-photo"><img src="<?php echo $result["img_1"] ?>" alt="" class="top-info-image"></div>
                         </div>
                         <div>
-                            <div class="delete-content-title">내용</div>
-                            <div>
-                                <textarea readonly class="delete-content"><?php echo $result["content"] ?></textarea>
-                            </div>
-                        </div>
-                        <div class="delete-right">
-                            <div>
-                                <div class="delete-photo-title">사진</div>
-                                <div class="delete-photo"><img src="<?php echo $result["img_1"] ?>" alt="" class="top-info-image"></div>
-                            </div>
-                            <div>
-                                <div class="delete-photo-title">사진</div>
-                                <div class="delete-photo">
-                                    <img src="<?php echo $result["img_2"] ?>" alt="" class="bottom-info-image">
-                                </div>
+                            <div class="delete-photo-title">사진</div>
+                            <div class="delete-photo">
+                                <img src="<?php echo $result["img_2"] ?>" alt="" class="bottom-info-image">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-    </form>
+        </div>
+    </main>
 </body>

@@ -12,14 +12,14 @@ try {
     // ----------------------------------
     // MAX page 획득 처리
     // ----------------------------------
-    $max_board_count = my_board_total_count($conn);
-    $max_page = (int)ceil($max_board_count / MY_LIST_COUNT);
+    $max_board_count = my_bucket_board_total_count($conn);
+    $max_page = (int)ceil($max_board_count / MY_LIST_COUNT_BUCKET);
 
     // ----------------------------------
     // pagination 설정 처리
     // ----------------------------------
     $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1; // 현재 페이지 획득
-    $offset = ($page - 1) * MY_LIST_COUNT; // 오프셋 설정
+    $offset = ($page - 1) * MY_LIST_COUNT_BUCKET; // 오프셋 설정
 
     $start_page_button_number = (int)(floor((($page - 1) / MY_PAGE_BUTTON_COUNT)) * MY_PAGE_BUTTON_COUNT) + 1 ; // 화면 표시 페이지 버튼 시작값
     $end_page_button_number = $start_page_button_number + (MY_PAGE_BUTTON_COUNT - 1); // 화면 표시 페이지 버튼 마지막값
@@ -30,11 +30,12 @@ try {
 
 
     $arr_prepare = [
-        "list_cnt" => MY_LIST_COUNT
+        "list_cnt" => MY_LIST_COUNT_BUCKET
         ,"offset" => $offset
     ];
 
-    $result = my_board_select_pagination($conn, $arr_prepare);
+    $result = my_bucket_board_select_pagination($conn, $arr_prepare);
+
 
 } catch(Throwable$th) {
     require_once(MY_PATH_ROOT."error.php");
@@ -67,79 +68,24 @@ try {
     </header>
     <div class="main-bucket">
         <div class="bucket-board">
-            <a href="/bucket_detail.php" class="bucket-mini">
+            
+            <?php foreach($result as $item) { ?>
+            <a href="/bucket_detail.php?bkl_id=<?php echo $item["bkl_id"] ?>" class="bucket-mini">
                 <div class="bucket_board1">
-                    <div>올랜도 디즈니랜드</div>
+                    <div><?php echo $item["title"] ?></div>
                 </div>
                 <div class="bucket_board2">
                     <div class="sort-inline">
-                        <span>미국</span>
-                        <span>관광</span>
+                        <span><?php echo $item["country"] ?></span>
+                        <span><?php echo $item["sort"] ?></span>
                     </div>
-                    <div>올랜도 디즈니랜드 가기</div>
+                    <div><?php echo $item["bucket_content"] ?></div>
                 </div>
             </a>
-            <a href="./bucket_detail.html" class="bucket-mini">
-                <div class="bucket_board1">
-                    <div>제목</div>
-                </div>
-                <div class="bucket_board2">
-                    <div class="sort-inline">
-                        <span>국가</span>
-                    </div>
-                    <div>내용</div>
-                </div>
-            </a>
-            <a href="./bucket_detail.html" class="bucket-mini">
-                <div class="bucket_board1">
-                    <div>제목</div>
-                </div>
-                <div class="bucket_board2">
-                    <div class="sort-inline">
-                        <span>국가</span>
-                    </div>
-                    <div>내용</div>
-                </div>
-            </a>
-        </div>
-        <div class="bucket-board">           
-            <a href="./bucket_detail.html" class="bucket-mini">
-                <div class="bucket_board1">
-                    <div>제목</div>
-                </div>
-                <div class="bucket_board2">
-                    <div class="sort-inline">
-                        <span>국가</span>
-                    </div>
-                    <div>내용</div>
-                </div>
-            </a>
-            <a href="./bucket_detail.html" class="bucket-mini">
-                <div class="bucket_board1">
-                    <div>제목</div>
-                </div>
-                <div class="bucket_board2">
-                    <div class="sort-inline">
-                        <span>국가</span>
-                    </div>
-                    <div>내용</div>
-                </div>
-            </a>
-            <a href="./bucket_detail.html" class="bucket-mini">
-                <div class="bucket_board1">
-                    <div>제목</div>
-                </div>
-                <div class="bucket_board2">
-                    <div class="sort-inline">
-                        <span>국가</span>
-                    </div>
-                    <div>내용</div>
-                </div>
-            </a>
-
+            <?php } ?>
         </div>
         <div class="main-footer">
-        <?php if($page !== 1) {?>
+            <?php if($page !== 1) {?>
                 <a href="/bucketlist.php?page=<?php echo $prev_page_button_number ?>"><button class="btn-small"><</button></a>
             <?php }?>
 
