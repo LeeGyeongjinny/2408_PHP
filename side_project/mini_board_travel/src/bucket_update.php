@@ -44,12 +44,13 @@ try {
         
         $country = isset($_POST["country"]) ? (string)$_POST["country"] : "";
         $sort = isset($_POST["sort"]) ? (string)$_POST["sort"] : "";
-        $info_content = isset($_POST["info_content"]) ? $_POST["info_content"] : "";
-        $info_img = $_FILES["info_img"];
+        $info_content = isset($_POST["info_content"]) ? (string)$_POST["info_content"] : "";
+        $info_img = $_FILES["info_img_upload"];
 
-        var_dump($id);
-        var_dump($title);
-        var_dump($info_img);
+        // var_dump($id);
+        // var_dump($title);
+        // var_dump($info_img);
+        // exit;
 
         if($id < 1 || $title === "") {
             throw new Exception("파라미터 오류임");
@@ -70,6 +71,7 @@ try {
             ,"info_content" => $info_content
         ];
 
+
         if($info_img["name"] !== "") {
             $arr_prepare["info_img"] =  my_save_img($_FILES["info_img"]);
         }
@@ -80,7 +82,7 @@ try {
         // commit
         $conn->commit();
         
-        header("Location: /detail.php?id=".$id."&page=".$page);
+        header("Location: /bucket_detail.php?bkl_id=".$id."&page=".$page);
         exit; 
     }
     
@@ -117,15 +119,17 @@ try {
             </div>
             <div class="btn-header">
                 <button type="submit" class="btn-top">확인</button>
-                <a href="/bucket_detail.php?id=<?php echo $result["bkl_id"] ?>&page=<?php echo $page ?>"><button type="button" class="btn-top">취소</button></a>
+                <a href="/bucket_detail.php?bkl_id=<?php echo $result["bkl_id"] ?>&page=<?php echo $page ?>"><button type="button" class="btn-top">취소</button></a>
             </div>
         </header>
+        <input type="hidden" name="bkl_id" value="<?php echo $result["bkl_id"] ?>">
+        <input type="hidden" name="page" value="<?php echo $page ?>">
         <div class="bucket-update">
             <div class="update-board">
                 <div class="update-left">
                     <div>
-                        <div class="update-title">
-                            <div><?php echo $result["title"] ?></div>
+                        <div>
+                            <input type="text" name="title" required class="update-title" value="<?php echo $result["title"] ?>">
                         </div>
                         <div>
                             <textarea name="bucketlist" id="bucketlist" class="update-content"><?php echo $result["bucket_content"] ?></textarea>
@@ -141,9 +145,9 @@ try {
                         <div class="right-top-align">
                             <div class="top-left">분류</div>
                             <div class="top-right">
-                                <select name="sort" id="sort" class="top-right">
+                                <div name="sort" id="sort" class="top-right">
                                     <?php echo $result["sort"] ?>
-                                </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -153,7 +157,7 @@ try {
                         </div>
                         <div class="bottom-content">
                             <img src="<?php echo $result["info_img"] ?>" alt="" class="bottom-info-image" name="info_img">
-                            <input type="file" id="photo" name="info_img_upload">
+                            <input type="file" id="photo" name="info_img_upload" >
                             <textarea name="botton-content-info" id="botton-content-info" class="bottom-content2" value="<?php echo $result["info_content"] ?>"></textarea>
                         </div>
                     </div>

@@ -48,9 +48,9 @@ try {
             <a href="/main.php"><h1>Travels<span>_상세</span></h1></a>
         </div>
         <div class="btn-header">
-            <a href="/update.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button class="btn-top">수정</button></a>
+            <a href="/update.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button type="button" class="btn-top">수정</button></a>
             <a href="/main.php"><button class="btn-top">취소</button></a>
-            <a href="/delete.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button class="btn-top">삭제</button></a>
+            <a href="/delete.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button type="button" class="btn-top">삭제</button></a>
         </div>
     </header>
     <main>

@@ -4,6 +4,7 @@ require_once(MY_PATH_DB_LIB);
 require_once(MY_PATH_COMMON_FNC);
 
 
+
 $conn = null;
 
 try {
@@ -11,6 +12,7 @@ try {
     $id = isset($_GET["bkl_id"]) ? (int)$_GET["bkl_id"] : 0;
 
     $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
+
     
     if($id < 1) {
         throw new Exception("파라미터 오류인가");
@@ -87,9 +89,9 @@ try {
                         <div class="bottom-info">
                             <div>정보</div>
                         </div>
-                        <div class="bottom-content">
-                            <div class="bottom-info-image"><img src="<?php echo $result["info_img"] ?>" alt="" name="info_img"></div>
-                            <textarea readonly name="botton-content-info" id="botton-content-info" class="bottom-content2" value="<?php echo $result["info_content"] ?>"></textarea>
+                        <div class="right-bottom-info">
+                            <div ><img src="<?php echo $result["info_img"] ?>" alt="" name="info_img" class="bottom-info-image"></div>
+                            <textarea readonly name="botton-content-info" id="botton-content-info" class="bottom-content" value="<?php echo $result["info_content"] ?>"></textarea>
                         </div>
                     </div>
                 </div>

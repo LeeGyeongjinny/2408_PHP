@@ -340,24 +340,47 @@ function my_bucket_board_select_id(PDO $conn, array $arr_param){
 
 
 
+
 /**
  *  bucket_board 테이블 update
  */
 function my_bucket_board_update(PDO $conn, array $arr_param){
-    $sql = 
-        " UPDATE "
-        ."      bucket_lists "
-        ." SET "
+    $set = 
+        " SET "
         ."      title = :title "
+        ."      ,updated_at = NOW() "
         ."      ,bucket_content = :bucket_content "
         ."      ,country = :country "
         ."      ,sort = :sort "
         ."      ,info_content = :info_content "
-        ."      ,info_img = :info_img "
-        ."      ,updated_at = NOW() "
-        ." WHERE "
-        ."      bkl_id = :bkl_id "
     ;
+
+    if(isset($arr_param["info_img"])) {
+        $set .= "      ,info_img = :info_img ";
+    }
+
+    $where =
+        " WHERE "
+        ."     bkl_id = :bkl_id "
+    ;
+
+    $sql = 
+        " UPDATE "
+        ."      bucket_lists "
+        .$set
+        .$where
+    ;
+    //     ." SET "
+    //     ."      title = :title "
+    //     ."      ,bucket_content = :bucket_content "
+    //     ."      ,country = :country "
+    //     ."      ,sort = :sort "
+    //     ."      ,info_content = :info_content "
+    //     ."      ,info_img = :info_img "
+    //     ."      ,updated_at = NOW() "
+    //     ." WHERE "
+    //     ."      bkl_id = :bkl_id "
+    // ;
 
     $stmt = $conn->prepare($sql);
     $result_flg = $stmt->execute($arr_param);

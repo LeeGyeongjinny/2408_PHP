@@ -119,11 +119,13 @@
     border-radius: 0 0 50px 50px;
     padding: 10px 20px; 
 }
-.right-bottom-info input {
+
+.bottom-info-image{
     width: 200px;
-    /* height: 140px; */
+    height: 140px;
     margin: 10px;
 }
+
 /* .bottom-content {
     width: 250px;
     height: 300px;

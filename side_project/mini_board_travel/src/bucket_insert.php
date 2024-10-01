@@ -32,7 +32,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
         
         // my_save_img($conn, $file);
 
-        $file_path_ = my_save_img($_FILES["info_img"]);
+        $file_path = my_save_img($_FILES["info_img"]);
 
         $arr_prepare = [
             "title" => $_POST["title"]
@@ -129,6 +129,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
                             <div>정보</div>
                         </div>
                         <div class="right-bottom-info">
+                            <!-- <label for="info_img" class="insert-info1"></label> -->
                             <input type="file" id="info_img" name="info_img" class="bottom-info-image">
                             <div>
                                 <textarea name="info-content" id="botton-content-info" class="bottom-content"></textarea>

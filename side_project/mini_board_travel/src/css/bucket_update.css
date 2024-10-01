@@ -87,12 +87,13 @@
     text-align: center;
     font-size: 2rem;
     font-weight: 900;
+    color: #fff;
 }
 
 .bottom-content {
     width: 250px;
     height: 300px;
-    background-color: #FFF;
+    background-color: #F9F9F9;
     border-radius: 0 0 50px 50px; 
     text-align: center;
 }

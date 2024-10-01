@@ -41,7 +41,6 @@ try {
         $page = isset($_POST["page"]) ? (int)$_POST["page"] : 1;
         $title = isset($_POST["title"]) ? (string)$_POST["title"] : "";
         $content = isset($_POST["content"]) ? (string)$_POST["content"] : "";
-        
         $country = isset($_POST["country"]) ? (string)$_POST["country"] : "";
         $city = isset($_POST["city"]) ? (string)$_POST["city"] : "";
         $departure = isset($_POST["departure"]) ? $_POST["departure"] : "";
