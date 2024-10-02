@@ -5,10 +5,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-.btn-top-chk:hover {
-    background-color: red;
-}
-
 .bucket-delete {
     width: 1000px;
     min-height: 600px;
@@ -16,6 +12,37 @@ h2 {
     margin: 0 auto;
     padding: 40px;
 }
+
+.head-flex{
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.btn-flex {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+p {
+    display:none;
+    font-size: 2rem;
+    margin-top: 20px;
+    margin-right: 10px;
+    color: #F00;
+
+}
+
+.btn-top-chk:hover + p {
+    display: block;
+}
+
+/* p {
+    color: #000;
+    font-size: 3rem;
+    padding-top: 30px;
+    padding-left: 50px;
+} */
 
 .delete-board {
     display: grid;
@@ -99,27 +126,28 @@ h2 {
     font-weight: 900;
 }
 
-.bottom-content {
+.right-bottom-info {
     width: 250px;
     height: 300px;
-    background-color: #FFF;
+    background-color: #F9F9F9;
     border-radius: 0 0 50px 50px; 
     text-align: center;
+    padding: 5px;
 }
 
 .bottom-info-image{
-    width: 200px;
-    height: 140px;
-    margin: 10px;
+    max-width: 200px;
+    max-height: 140px;
+    margin: 0 auto;
 }
 
 
-.bottom-content2 {
-    width: 250px;
+.bottom-content {
+    resize: none;
+    width: 240px;
     height: 150px;
-    background-color: #FFF;
+    background-color: #F9F9F9;
     border-radius: 0 0 50px 50px;    
     font-size: 1.2rem;
     padding: 10px 20px;
-    resize: none;
 }

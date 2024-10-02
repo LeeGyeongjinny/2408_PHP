@@ -38,7 +38,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
             "title" => $_POST["title"]
             ,"bucket_content" => $_POST["bucket_content"]
             ,"country" => $_POST["country"]
-            ,"sort" => $_POST["select"]
+            ,"sort" => $_POST["sort"]
             ,"info_content" => $_POST["info_content"]
             ,"info_img" => $file_path
         ];
@@ -115,7 +115,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
                         </div>
                         <div class="right-top-align">
                             <label for="sort" class="top-left">분류</label>
-                            <select name="select" id="sort" class="top-right">
+                            <select name="sort" id="sort" class="top-right">
                                 <option value="관광">관광</option>
                                 <option value="먹방">먹방</option>
                                 <option value="쇼핑">쇼핑</option>
@@ -129,10 +129,9 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
                             <div>정보</div>
                         </div>
                         <div class="right-bottom-info">
-                            <!-- <label for="info_img" class="insert-info1"></label> -->
                             <input type="file" id="info_img" name="info_img" class="bottom-info-image">
                             <div>
-                                <textarea name="info-content" id="botton-content-info" class="bottom-content"></textarea>
+                                <textarea name="info_content" id="info_content" class="bottom-content"></textarea>
                             </div>
                         </div>
                     </div>

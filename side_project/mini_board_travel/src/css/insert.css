@@ -11,6 +11,7 @@
     background: transparent;
     outline: none;
     width: 700px;
+    color: #fff;
 }
 
 .main-board-grid {
@@ -43,8 +44,8 @@
 
 .insert-info2{
     background-color: #F9F9F9;
-    width: 140px;
-    height: 40px;
+    max-width: 140px;
+    max-height: 40px;
     line-height: 40px;
     border-radius: 0 30px 30px 0;
     font-size: 1.2rem;

@@ -24,6 +24,7 @@ try {
 
     $result = my_board_select_id($conn, $arr_prepare);
 
+
 } catch(Throwable $th) {
     require_once(MY_PATH_ERROR);
     exit;
@@ -101,11 +102,23 @@ try {
                     <div class="detail-right">
                         <div>
                             <div class="detail-photo-title">사진</div>
-                            <div class="detail-photo"><img src="<?php echo $result["img_1"] ?>" alt="" class="top-info-image"></div>
+                            <div class="detail-photo">
+                                <?php if(!is_null($result["img_1"])){ ?>
+                                    <img src="<?php echo $result["img_1"] ?>" alt="" class="info-image">
+                                <?php } else { ?>
+                                <img src="/img/no_image_available.png" alt="" class="info-image">
+                                <?php } ?>
+                            </div>
                         </div>
                         <div>
                             <div class="detail-photo-title">사진</div>
-                            <div class="detail-photo"><img src="<?php echo $result["img_2"] ?>" alt="" class="bottom-info-image"></div>
+                            <div class="detail-photo">
+                                <?php if(!is_null($result["img_2"])){ ?>
+                                    <img src="<?php echo $result["img_2"] ?>" alt="" class="info-image">
+                                <?php } else { ?>
+                                <img src="/img/no_image_available.png" alt="" class="info-image">
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
                 </div>

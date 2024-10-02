@@ -370,6 +370,9 @@ function my_bucket_board_update(PDO $conn, array $arr_param){
         .$set
         .$where
     ;
+
+    // $sql = 
+    //     " UPDATE "
     //     ." SET "
     //     ."      title = :title "
     //     ."      ,bucket_content = :bucket_content "
@@ -380,7 +383,7 @@ function my_bucket_board_update(PDO $conn, array $arr_param){
     //     ."      ,updated_at = NOW() "
     //     ." WHERE "
     //     ."      bkl_id = :bkl_id "
-    // ;
+    // ; 이거 한번에 쓰기
 
     $stmt = $conn->prepare($sql);
     $result_flg = $stmt->execute($arr_param);

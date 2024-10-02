@@ -91,24 +91,24 @@
 .right-bottom-info {
     width: 250px;
     height: 300px;
-    background-color: #FFF;
+    background-color: #F9F9F9;
     border-radius: 0 0 50px 50px; 
     text-align: center;
-    
+    padding: 5px;
 }
 
 .bottom-info-image{
-    width: 200px;
-    height: 140px;
-    padding: 10px;
+    max-width: 200px;
+    max-height: 140px;
+    margin: 0 auto;
 }
 
 
 .bottom-content {
     resize: none;
-    width: 250px;
+    width: 240px;
     height: 150px;
-    /* background-color: #FFF; */
+    background-color: #F9F9F9;
     border-radius: 0 0 50px 50px;    
     font-size: 1.2rem;
     padding: 10px 20px;

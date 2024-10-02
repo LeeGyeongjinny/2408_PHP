@@ -125,8 +125,8 @@ try {
             <input type="hidden" name="page" value="<?php echo $page ?>">
             <div class="main-board">
                 <div class="main-board1">
-                    <div class="update-title">
-                        <input type="text" name="title" value="<?php echo $result["title"] ?>">
+                    <div >
+                        <input type="text" name="title" value="<?php echo $result["title"] ?>" class="update-title">
                     </div>
                 </div>
                 <div class="main-board2">
@@ -154,7 +154,7 @@ try {
                             </div>
                             <div class="update-info">
                                 <div class="update-info1">동행</div>
-                                <div class="update-info2" name="companion"><?php echo $result["companion"] ?></div>
+                                <input class="update-info2" name="companion" value="<?php echo $result["companion"] ?>">
                             </div>
                             <div class="update-info">
                                 <div class="update-info1 update-date">작성일</div>

@@ -94,6 +94,7 @@ main {
 .main-board1 {
     background-color: #6FB2FF;
     border-radius: 50px 50px 0 0;
+    color: #fff;
 }
 
 .main-board2 {
@@ -118,3 +119,8 @@ textarea {
     margin: 20px 0 0 0;
     text-align: center;
 }
+
+/* main-title 파란색 border-radius, #fff */
+/* main-board 미색, border-radius,   */
+/* main crud 여기서 공통되는거 묶기 */
+/* bucketlist crud 여기서 공통되는거 묶기 */

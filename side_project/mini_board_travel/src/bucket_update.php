@@ -13,6 +13,7 @@ try {
         
         $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
 
+
         if($id < 1) {
             throw new Exception("파라미터 오류인가");
         }
@@ -73,7 +74,7 @@ try {
 
 
         if($info_img["name"] !== "") {
-            $arr_prepare["info_img"] =  my_save_img($_FILES["info_img"]);
+            $arr_prepare["info_img"] =  my_save_img($_FILES["info_img_upload"]);
         }
         
         my_bucket_board_update($conn, $arr_prepare);
@@ -132,7 +133,7 @@ try {
                             <input type="text" name="title" required class="update-title" value="<?php echo $result["title"] ?>">
                         </div>
                         <div>
-                            <textarea name="bucketlist" id="bucketlist" class="update-content"><?php echo $result["bucket_content"] ?></textarea>
+                            <textarea name="bucket_content" id="bucketlist" class="update-content"><?php echo $result["bucket_content"] ?></textarea>
                         </div>
                     </div>
                 </div>
@@ -145,9 +146,13 @@ try {
                         <div class="right-top-align">
                             <div class="top-left">분류</div>
                             <div class="top-right">
-                                <div name="sort" id="sort" class="top-right">
-                                    <?php echo $result["sort"] ?>
-                                </div>
+                                <select name="sort" id="sort" class="top-right">
+                                    <option value="관광" <?php echo $result["sort"] === "관광" ? "selected" : ""; ?>>관광</option>
+                                    <option value="먹방" <?php echo $result["sort"] === "먹방" ? "selected" : ""; ?>>먹방</option>
+                                    <option value="쇼핑" <?php echo $result["sort"] === "쇼핑" ? "selected" : ""; ?>>쇼핑</option>
+                                    <option value="체험" <?php echo $result["sort"] === "체험" ? "selected" : ""; ?>>체험</option>
+                                    <option value="기타" <?php echo $result["sort"] === "기타" ? "selected" : ""; ?>>기타</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -155,10 +160,10 @@ try {
                         <div class="bottom-info">
                             <div>정보</div>
                         </div>
-                        <div class="bottom-content">
+                        <div class="right-bottom-info">
                             <img src="<?php echo $result["info_img"] ?>" alt="" class="bottom-info-image" name="info_img">
-                            <input type="file" id="photo" name="info_img_upload" >
-                            <textarea name="botton-content-info" id="botton-content-info" class="bottom-content2" value="<?php echo $result["info_content"] ?>"></textarea>
+                            <input type="file" id="photo" name="info_img_upload">
+                            <textarea name="info_content" id="info_content" class="bottom-content" ><?php echo $result["info_content"] ?></textarea>
                         </div>
                     </div>
                 </div>

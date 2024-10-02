@@ -3,6 +3,7 @@
     font-weight: 900;
     font-size: 1.6rem;
     padding: 15px;
+    color: #fff;
 }
 
 .main-board-grid {
@@ -87,18 +88,13 @@
 .detail-photo {
     background-color: #F9F9F9;
     width: 200px;
-    height: 140px;
+    height: 150px;
     border-radius: 0 0 30px 30px;
+    padding: 5px;
 }
 
-.top-info-image{
-    width: 180px;
-    height: 130px;
-    margin: 10px;
-}
-
-.bottom-info-image{
-    width: 180px;
-    height: 130px;
-    margin: 10px;
+.info-image{
+    max-width: 180px;
+    max-height: 130px;
+    margin: 0 auto;
 }

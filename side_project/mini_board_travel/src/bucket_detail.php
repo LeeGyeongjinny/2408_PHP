@@ -89,9 +89,15 @@ try {
                         <div class="bottom-info">
                             <div>정보</div>
                         </div>
-                        <div class="right-bottom-info">
-                            <div ><img src="<?php echo $result["info_img"] ?>" alt="" name="info_img" class="bottom-info-image"></div>
-                            <textarea readonly name="botton-content-info" id="botton-content-info" class="bottom-content" value="<?php echo $result["info_content"] ?>"></textarea>
+                        <div class="right-bottom-info ">
+                            <div>
+                                <?php if(!is_null($result["info_img"])){ ?>
+                                    <img src="<?php echo $result["info_img"] ?>" alt="" class="bottom-info-image">
+                                <?php } else { ?>
+                                <img src="/img/no_image_available.png" alt="" class="bottom-info-image">
+                                <?php } ?>
+                            </div>
+                            <textarea readonly name="info_content" id="info_content" class="bottom-content"><?php echo $result["info_content"] ?></textarea>
                         </div>
                     </div>
                 </div>

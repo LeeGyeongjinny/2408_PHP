@@ -99,8 +99,13 @@ try {
         <div class="btn-header">
             <form action="/delete.php" method="post">
                 <input type="hidden" name="id" value="<?php echo $result["id"]?>">
-                <button type="submit" class="btn-top btn-top-chk">확인</button>
-                <a href="/detail.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button type="button" class="btn-top">취소</button></a>
+                <div class="head-flex">
+                    <div class="btn-flex">
+                        <button type="submit" class="btn-top btn-top-chk">확인</button>
+                        <p>진짜 삭제?</p>
+                    </div>
+                    <a href="/detail.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><button type="button" class="btn-top">취소</button></a>
+                </div>
             </form>
         </div>
     </header>
@@ -153,12 +158,22 @@ try {
                     <div class="delete-right">
                         <div>
                             <div class="delete-photo-title">사진</div>
-                            <div class="delete-photo"><img src="<?php echo $result["img_1"] ?>" alt="" class="top-info-image"></div>
+                            <div class="delete-photo">
+                                <?php if(!is_null($result["img_1"])){ ?>
+                                    <img src="<?php echo $result["img_1"] ?>" alt="" class="info-image">
+                                <?php } else { ?>
+                                <img src="/img/no_image_available.png" alt="" class="info-image">
+                                <?php } ?>
+                            </div>
                         </div>
                         <div>
                             <div class="delete-photo-title">사진</div>
                             <div class="delete-photo">
-                                <img src="<?php echo $result["img_2"] ?>" alt="" class="bottom-info-image">
+                                <?php if(!is_null($result["img_2"])){ ?>
+                                    <img src="<?php echo $result["img_2"] ?>" alt="" class="info-image">
+                                <?php } else { ?>
+                                <img src="/img/no_image_available.png" alt="" class="info-image">
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

@@ -25,8 +25,8 @@ try {
     $end_page_button_number = $start_page_button_number + (MY_PAGE_BUTTON_COUNT - 1); // 화면 표시 페이지 버튼 마지막값
 
     $end_page_button_number = $end_page_button_number > $max_page ? $max_page : $end_page_button_number;
-    $prev_page_button_number = $page - 1 < 1? 1 : $page - 1; // 이전 버튼
-    $next_page_button_number = $page + 1 > $max_page? $max_page : $page + 1; // 다음 버튼
+    $prev_page_button_number = $start_page_button_number - 1 < 1? 1 : $start_page_button_number - 1; // 이전 버튼
+    $next_page_button_number = $start_page_button_number + 5 > $max_page? $max_page : $start_page_button_number + 5; // 다음 버튼
 
 
     $arr_prepare = [
@@ -59,7 +59,7 @@ try {
 <body>
     <header>
         <div class="head-title">
-            <a href="/bucketlist.php"><h1>Travels<span>_버킷리스트</span></h1></a>
+            <a href="/"><h1>Travels<span>_버킷리스트</span></h1></a>
         </div>
         <div class="btn-header">
             <a href="/index.php"><button class="btn-top">홈</button></a>
@@ -85,16 +85,15 @@ try {
             <?php } ?>
         </div>
         <div class="main-footer">
-            <?php if($page !== 1) {?>
+            <?php if($page > 5) {?>
                 <a href="/bucketlist.php?page=<?php echo $prev_page_button_number ?>"><button class="btn-small"><</button></a>
             <?php }?>
 
             <?php for($i = $start_page_button_number; $i <= $end_page_button_number; $i++) {?>
             <a href="/bucketlist.php?page=<?php echo $i ?>"><button class="btn-small <?php echo $page ===  $i ? "btn-selected" : "" ?>"><?php echo $i ?></button></a>
             <?php }?>
-            <?php if($page !== $max_page) {?>
+            <?php if($start_page_button_number + 5 < $max_page) {?>
                 <a href="/bucketlist.php?page=<?php echo $next_page_button_number ?>"><button class="btn-small">></button></a>
-                
             <?php }?>
         </div>
     </div>

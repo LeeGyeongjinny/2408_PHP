@@ -1,16 +1,18 @@
 .update-title {
-    text-align: center;
+    /* text-align: center; */
     /* font-weight: 900;
     font-size: 1.6rem; */
-    padding: 15px;
-}
-
-.update-title input{
+    /* padding: 15px; */
+    background-color: #6FB2FF;
+    border-radius: 50px 50px 0 0;
+    width: 940px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #fff;
     font-weight: 900;
     font-size: 1.6rem;
-    background: transparent;
     outline: none;
-    width: 700px;
 }
 
 .main-board-grid {
@@ -99,6 +101,7 @@
     width: 200px;
     height: 140px;
     border-radius: 0 0 30px 30px;
+    padding: 5px;
 }
 
 .update-photo input {
@@ -106,6 +109,7 @@
 }
 
 .info-image{
-    width: 180px;
-    height: 130px;
+    max-width: 180px;
+    max-height: 130px;
+    margin: 0 auto;
 }

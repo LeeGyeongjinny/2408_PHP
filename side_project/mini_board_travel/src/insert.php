@@ -44,7 +44,6 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
             $arr_prepare["companion"] = null;
         }
 
-
         // begin transaction
         $conn->beginTransaction();
         my_board_insert($conn, $arr_prepare);
@@ -94,7 +93,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
             <div class="main-board">
                 <div class="main-board1">
                     <div class="insert-title">
-                        <input type="text" placeholder="제목" name="title" required>
+                        <input type="text" placeholder="제목" name="title" maxlength="20" required>
                     </div>
                 </div>
                 <div class="main-board2">
@@ -102,11 +101,11 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
                         <div class="insert-left">
                             <div class="insert-info">
                                 <label for="country" class="insert-info1">국가</label>
-                                <input type="text" name="country" id="country" class="insert-info2" required>
+                                <input type="text" name="country" id="country" maxlength="10" class="insert-info2" required>
                             </div>
                             <div class="insert-info">
                                 <label for="city" class="insert-info1">도시</label>
-                                <input type="text" name="city" id="city" class="insert-info2" required>
+                                <input type="text" name="city" id="city" maxlength="10" class="insert-info2" required>
                             </div>
                             <div class="insert-info">
                                 <label for="departure" class="insert-info1">출발</label>
@@ -118,15 +117,15 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
                             </div>
                             <div class="insert-info">
                                 <label for="companion" class="insert-info1">동행</label>
-                                <input name="companion" id="companion" class="insert-info2" name="companion">
+                                <input name="companion" id="companion" maxlength="10" class="insert-info2" name="companion">
                             </div>
                             <div class="insert-info">
                                 <label for="photo1" class="insert-info1">사진</label>
-                                <input type="file" id="photo1" name="upload_file1" class="insert-info2" />
+                                <input type="file" id="photo1" name="upload_file1" class="insert-info2">
                             </div>
                             <div  class="insert-info">
                                 <label for="photo2" class="insert-info1">사진</label>
-                                <input type="file" id="photo2" name="upload_file2" class="insert-info2" />
+                                <input type="file" id="photo2" name="upload_file2" class="insert-info2">
                             </div>
                         </div>
                         <div class="insert-content-box">
