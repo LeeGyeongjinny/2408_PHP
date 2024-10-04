@@ -62,20 +62,57 @@ try {
             <a href="/"><h1>Travels<span>_버킷리스트</span></h1></a>
         </div>
         <div class="btn-header">
-            <a href="/index.php"><button class="btn-top">홈</button></a>
-            <a href="/bucket_insert.php"><button class="btn-top">+</button></a>
+            <a href="/index.php">
+                <button type="submit" class="btn-header-css">
+                    <div class="svg-wrapper-1">
+                        <div class="svg-wrapper">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            width="30"
+                            height="30"
+                            class="icon"
+                        >
+                            <path
+                            d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"
+                            ></path>
+                        </svg>
+                        </div>
+                    </div>
+                    <span>홈</span>
+                </button>
+            </a>
+            <a href="/bucket_insert.php">
+                <button type="button" class="btn-header-css">
+                    <div class="svg-wrapper-1">
+                        <div class="svg-wrapper">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            width="30"
+                            height="30"
+                            class="icon"
+                        >
+                            <path
+                            d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"
+                            ></path>
+                        </svg>
+                        </div>
+                    </div>
+                    <span>+</span>
+                </button>
+            </a>
         </div>
     </header>
-    <div class="main-bucket">
-        <div class="bucket-board">
-            
+    <main>
+        <div class="bucket-board">            
             <?php foreach($result as $item) { ?>
             <a href="/bucket_detail.php?bkl_id=<?php echo $item["bkl_id"] ?>" class="bucket-mini">
-                <div class="bucket_board1">
+                <div class="main-title bucket-main-title">
                     <div><?php echo $item["title"] ?></div>
                 </div>
-                <div class="bucket_board2">
-                    <div class="sort-inline">
+                <div class="main-box bucket-main-content">
+                    <div>
                         <span><?php echo $item["country"] ?></span>
                         <span><?php echo $item["sort"] ?></span>
                     </div>
@@ -86,16 +123,16 @@ try {
         </div>
         <div class="main-footer">
             <?php if($page > 5) {?>
-                <a href="/bucketlist.php?page=<?php echo $prev_page_button_number ?>"><button class="btn-small"><</button></a>
+                <a href="/bucketlist.php?page=<?php echo $prev_page_button_number ?>"><button class="btn-footer"><</button></a>
             <?php }?>
 
             <?php for($i = $start_page_button_number; $i <= $end_page_button_number; $i++) {?>
-            <a href="/bucketlist.php?page=<?php echo $i ?>"><button class="btn-small <?php echo $page ===  $i ? "btn-selected" : "" ?>"><?php echo $i ?></button></a>
+            <a href="/bucketlist.php?page=<?php echo $i ?>"><button class="btn-footer <?php echo $page ===  $i ? "btn-selected" : "" ?>"><?php echo $i ?></button></a>
             <?php }?>
             <?php if($start_page_button_number + 5 < $max_page) {?>
-                <a href="/bucketlist.php?page=<?php echo $next_page_button_number ?>"><button class="btn-small">></button></a>
+                <a href="/bucketlist.php?page=<?php echo $next_page_button_number ?>"><button class="btn-footer">></button></a>
             <?php }?>
         </div>
-    </div>
+    </main>
 </body>
 </html>

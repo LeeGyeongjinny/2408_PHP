@@ -61,14 +61,55 @@ try {
             <a href="/"><h1>Travels<span>_기록</span></h1></a>
         </div>
         <div class="btn-header">
-            <a href="/index.php"><button class="btn-top">홈</button></a>
-            <a href="/insert.php"><button class="btn-top">+</button></a>
+            <!-- <a href="/index.php"><button class="btn-css">홈</button></a>
+            <a href="/insert.php"><button class="btn-css">+</button></a> -->
+            <a href="/index.php">
+                <button type="submit" class="btn-header-css">
+                    <div class="svg-wrapper-1">
+                        <div class="svg-wrapper">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            width="30"
+                            height="30"
+                            class="icon"
+                        >
+                            <path
+                            d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"
+                            ></path>
+                        </svg>
+                        </div>
+                    </div>
+                    <span>홈</span>
+                </button>
+            </a>
+            <a href="/insert.php">
+                <button type="button" class="btn-header-css">
+                    <div class="svg-wrapper-1">
+                        <div class="svg-wrapper">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            width="30"
+                            height="30"
+                            class="icon"
+                        >
+                            <path
+                            d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"
+                            ></path>
+                        </svg>
+                        </div>
+                    </div>
+                    <span>+</span>
+                </button>
+            </a>    
         </div>
     </header>
     <main>
         <div class="main-board">
-            <div class="main-board1">
-                <div class="item main-title">
+            <!-- <div class="main-board1"> -->
+            <div class="main-title">
+                <div class="item main-title-content">
                     <div>♣</div>
                     <div>국가</div>
                     <div>도시</div>
@@ -76,31 +117,34 @@ try {
                     <div>작성일자</div>
                 </div>
             </div>
-            <div class="main-board2">
-                    <?php foreach($result as $item) { ?>
-                    <div class="item main-content">
-                        <div><?php echo $item["id"] ?></div>
-                        <div><?php echo $item["country"] ?></div>
-                        <div><?php echo $item["city"] ?></div>
-                        <div><a href="/detail.php?id=<?php echo $item["id"] ?>&page=<?php echo $page?>"><?php echo $item["title"] ?></a></div>
-                        <div><?php echo $item["created_at"] ?></div>
-                    </div>
-                    <?php } ?> 
+            <!-- <div class="main-board2"> -->
+            <div class="main-box main-box-content">
+                <?php foreach($result as $item) { ?>
+                <div class="item main-content">
+                    <div><?php echo $item["id"] ?></div>
+                    <div><?php echo $item["country"] ?></div>
+                    <div><?php echo $item["city"] ?></div>
+                    <div><a href="/detail.php?id=<?php echo $item["id"] ?>&page=<?php echo $page?>"><?php echo $item["title"] ?></a></div>
+                    <div class="date"><?php echo $item["created_at"] ?></div>
+                </div>
+                <?php } ?> 
             </div>
         </div>
         <div class="main-footer">
-            <?php if($page > 5) {?>
-                <a href="/main.php?page=<?php echo $prev_page_button_number ?>"><button class="btn-small"><</button></a>
-            <?php }?>
+            <!-- <div class="btn-footer"> -->
+                <?php if($page > 5) {?>
+                    <a href="/main.php?page=<?php echo $prev_page_button_number ?>"><button class="btn-footer"><</button></a>
+                <?php }?>
 
-            <?php for($i = $start_page_button_number; $i <= $end_page_button_number; $i++) {?>
-            <a href="/main.php?page=<?php echo $i ?>"><button class="btn-small <?php echo $page ===  $i ? "btn-selected" : "" ?>"><?php echo $i ?></button></a>
-            <?php }?>
-            <?php if($start_page_button_number + 5 < $max_page) {?>
-                <a href="/main.php?page=<?php echo $next_page_button_number ?>"><button class="btn-small">></button></a>
-            <?php }?>
+                <?php for($i = $start_page_button_number; $i <= $end_page_button_number; $i++) {?>
+                    <a href="/main.php?page=<?php echo $i ?>"><button class="btn-footer <?php echo $page ===  $i ? "btn-selected" : "" ?>"><?php echo $i ?></button></a>
+                <?php }?>
+                <?php if($start_page_button_number + 5 < $max_page) {?>
+                    <a href="/main.php?page=<?php echo $next_page_button_number ?>"><button class="btn-footer">></button></a>
+                <?php }?>
+            <!-- </div> -->
         </div>
     </main>
-    
+    <!-- <a href="/button_test.php"><button>save</button></a> -->
 </body>
 </html>

@@ -4,11 +4,15 @@
     text-align: center;
 }
 
-
-.main-title {
+.main-title-content {
     font-size: 1.8rem;
-    padding: 15px;
+    padding: 13px;
 }
+
+.main-box-content{
+    min-height: 400px;
+}
+
 .main-content {
     background-color: #E3F0FF;
     border-radius: 40px;
@@ -21,6 +25,10 @@
     color: #000;
 }
 
-.main-content a {
-    color: #000;
+.date{
+    word-spacing: 15px;
 }
+
+/* .main-content a {
+    color: #000;
+} */

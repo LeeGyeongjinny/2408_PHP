@@ -109,6 +109,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/common_bucket.css">
     <link rel="stylesheet" href="./css/bucket_update.css">
     <title>Bucket List Update</title>
 </head>
@@ -119,31 +120,66 @@ try {
                 <a href="/bucketlist.php"><h1>Travels<span>_버킷리스트 수정</span></h1></a>
             </div>
             <div class="btn-header">
-                <button type="submit" class="btn-top">확인</button>
-                <a href="/bucket_detail.php?bkl_id=<?php echo $result["bkl_id"] ?>&page=<?php echo $page ?>"><button type="button" class="btn-top">취소</button></a>
+                <button type="submit" class="btn-header-css">
+                    <div class="svg-wrapper-1">
+                        <div class="svg-wrapper">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            width="30"
+                            height="30"
+                            class="icon"
+                        >
+                            <path
+                            d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"
+                            ></path>
+                        </svg>
+                        </div>
+                    </div>
+                    <span>확인</span>
+                </button>
+                <a href="/bucket_detail.php?bkl_id=<?php echo $result["bkl_id"] ?>&page=<?php echo $page ?>">
+                    <button type="button" class="btn-header-css">
+                        <div class="svg-wrapper-1">
+                            <div class="svg-wrapper">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                width="30"
+                                height="30"
+                                class="icon"
+                            >
+                                <path
+                                d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"
+                                ></path>
+                            </svg>
+                            </div>
+                        </div>
+                        <span>취소</span>
+                    </button>
+                </a>
+            
             </div>
         </header>
         <input type="hidden" name="bkl_id" value="<?php echo $result["bkl_id"] ?>">
         <input type="hidden" name="page" value="<?php echo $page ?>">
-        <div class="bucket-update">
-            <div class="update-board">
-                <div class="update-left">
-                    <div>
-                        <div>
-                            <input type="text" name="title" required class="update-title" value="<?php echo $result["title"] ?>">
-                        </div>
+        <main>
+            <div class="bucket-board-grid">
+                <div class="main-board">
+                    <div class="main-title bucket-title-content">
+                        <input type="text" name="title" required class="update-title" value="<?php echo $result["title"] ?>">
                         <div>
                             <textarea name="bucket_content" id="bucketlist" class="update-content"><?php echo $result["bucket_content"] ?></textarea>
                         </div>
                     </div>
                 </div>
-                <div class="update-right">
-                    <div class="right-top">
-                        <div class="right-top-align">
+                <div class="bucket-right">
+                    <div class="bucket-right-top">
+                        <div class="bucket-right-align">
                             <label for="country" class="top-left">국가</label>
                             <input  name="country" id="country" class="top-right" value="<?php echo $result["country"] ?>" required>
                         </div>
-                        <div class="right-top-align">
+                        <div class="bucket-right-align">
                             <div class="top-left">분류</div>
                             <div class="top-right">
                                 <select name="sort" id="sort" class="top-right">
@@ -156,8 +192,8 @@ try {
                             </div>
                         </div>
                     </div>
-                    <div class="right-bottom">
-                        <div class="bottom-info">
+                    <div class="bucket-right-bottom">
+                        <div class="main-title bottom-info">
                             <div>정보</div>
                         </div>
                         <div class="right-bottom-info">
@@ -168,7 +204,7 @@ try {
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     </form>
 </body>
 </html>
