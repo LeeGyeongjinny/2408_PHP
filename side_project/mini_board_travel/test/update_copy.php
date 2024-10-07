@@ -107,7 +107,37 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/common_main.css">
+    <link rel="stylesheet" href="./css/update.css">
     <title>Travel Update</title>
+
+    <style>
+        .main-board-photo{
+            width: 400px;
+            height: 300px;
+            background-color: lightgray;
+            border-radius: 20px 20px / 20px 20px;
+            overflow: hidden;
+            margin: 0px 10px 10px 0px;
+        }
+    </style>
+        <script>
+        function loadFile(input) {
+            let file = input.files[0]; // 선택된 파일 가져오기
+
+            let newImage = document.createElement("img"); //새 이미지 추가
+
+            //이미지 source 가져오기
+            newImage.src = URL.createObjectURL(file);
+            newImage.id = "img-id"
+            newImage.style.width = "100%";
+            newImage.style.height = "100%";
+            newImage.style.objectFit = "cover";
+
+            //이미지를 image-show div에 추가
+            let container = document.getElementById('photo123');
+            container.appendChild(newImage);
+        }
+    </script>
 </head>
 <body>
     <form action="/update.php" method="post" enctype="multipart/form-data">
@@ -206,9 +236,9 @@ try {
                         <div class="main-board-right">
                             <div>
                                 <div class="main-board-photo-title">사진</div>
-                                <div class="main-board-photo">
+                                <div class="main-board-photo" id="photo123">
                                     <img src="<?php echo $result["img_1"] ?>" alt="" class="info-image"  name="img_1">
-                                    <input type="file" id="photo1" name="upload_file1">
+                                    <input type="file" id="photo1" name="upload_file1" onchange="loadFile(this)">
                                 </div>
                             </div>
                             <div>

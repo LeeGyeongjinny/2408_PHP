@@ -11,6 +11,37 @@ function my_db_conn() {
     return new PDO(MY_MARIADB_DSN, MY_MARIADB_USER, MY_MARIADB_PASSWORD, $option);
 }
 
+/**
+ * 로그인
+ */
+
+
+function my_board_select_id_pw(PDO $conn, array $arr_param) {
+    // SQL
+    $sql =
+        " SELECT "
+        ."    * "
+        ." FROM "
+        ."      tb_user "
+        ." WHERE "
+        ."      deleted_at IS NULL "
+        ."   AND userid = :userid "
+        ."   AND userpw = :userpw "
+    ;
+
+
+
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+    throw new Exception("쿼리 실행 실패");
+    }
+
+
+    return $stmt->fetchAll();
+}
+
 
 /**
  * main board --------------------------------------------------------

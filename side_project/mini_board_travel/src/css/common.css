@@ -204,6 +204,7 @@ main a {
     color: #000;
 }
 
+
 select, input {
     border: none;
     text-align: center;
@@ -217,7 +218,6 @@ textarea {
     resize: none;
     outline: none;
 }
-
 
 
 

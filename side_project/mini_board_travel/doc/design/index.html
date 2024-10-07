@@ -5,24 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/index.css">
-    <title>Travel board</title>
+    <title>Travels_home</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Travels</h1>        
-        <nav role="navigation">
-            <div class="menuToggle">
-                <input type="checkbox" />
-                <span></span>
-                <span></span>
-                <span></span>
-                <ul class="menu">
-                    <a href="./main.html"><li>기록</li></a>
-                    <a href="./bucketlist.html"><li>버킷리스트</li></a>
-                </ul>
+    <header>
+        <h1>Login</h1>
+    </header>
+    <main>
+        <div class="wrap">
+            <div class="box">
+                <h2>Login?</h2>
+                <form action="./loginok.html" method="post" class="form">
+                        <p><input type="text" name="userid" id="userid" placeholder="ID"></p>
+                        <p><input type="password" name="userpw" id="userpw" placeholder="Password"></p>
+                        <button type="submit" class="btn-login">Log in</button>
+                </form>
             </div>
-        </nav>
-    </div>
-    
+        </div>
+    </main>
 </body>
 </html>

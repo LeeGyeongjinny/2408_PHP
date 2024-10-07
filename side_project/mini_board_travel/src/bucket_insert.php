@@ -82,7 +82,6 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/common_bucket.css">
-    <link rel="stylesheet" href="./css/bucket_insert.css">
     <title>Bucket List Insert</title>
 </head>
 <body>

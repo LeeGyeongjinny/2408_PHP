@@ -110,7 +110,6 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/common_bucket.css">
-    <link rel="stylesheet" href="./css/bucket_update.css">
     <title>Bucket List Update</title>
 </head>
 <body>

@@ -1,9 +1,23 @@
-.detail-title {
+.title-content {
     text-align: center;
     font-weight: 900;
     font-size: 1.6rem;
+}
+
+.title-content input{
+    text-align: center;
+    font-weight: 900;
+    font-size: 1.6rem;
+    width: 400px;
+    height: 60px;
+    color: #fff;
+}
+
+.title-content p {
     padding: 15px;
 }
+
+/* ------------------------------------ */
 
 .main-board-grid {
     display: flex;
@@ -12,17 +26,18 @@
     padding: 20px;
 }
 
-.detail-left {
+.main-board-left {
     display: grid;
     gap: 10px;
 }
 
-.detail-info {
+
+.main-board-info {
     display: flex;
     justify-content: space-between;
 }
 
-.detail-info1{
+.main-board-info1{
     background-color: #98B6D8;
     width: 70px;
     height: 40px;
@@ -33,7 +48,7 @@
     font-size: 1.3rem;
 }
 
-.detail-info2{
+.main-board-info2{
     background-color: #F9F9F9;
     width: 140px;
     height: 40px;
@@ -42,7 +57,13 @@
     font-size: 1.2rem;
 }
 
-.detail-content-title {
+.created-date{
+    height: 80px;
+}
+
+/* ------------------------------------ */
+
+.main-content-title {
     background-color: #98B6D8;
     width: 400px;
     height: 40px;
@@ -53,7 +74,7 @@
     font-weight: 900;
 }
 
-.detail-content {
+.main-content {
     background-color: #F9F9F9;
     width: 400px;
     height: 370px;
@@ -64,12 +85,15 @@
     font-size: 1.2rem;
 }
 
-.detail-right{
+/* ------------------------------------ */
+
+.main-board-right{
     display: grid;
+    /* grid-template-rows: 1fr 1fr; */
     gap: 10px;
 }
 
-.detail-photo-title {
+.main-board-photo-title {
     background-color: #98B6D8;
     width: 200px;
     height: 40px;
@@ -80,21 +104,17 @@
     font-weight: 900;
 }
 
-.detail-photo {
+.main-board-photo {
     background-color: #F9F9F9;
     width: 200px;
-    height: 140px;
+    height: 150px;
     border-radius: 0 0 30px 30px;
+    padding: 5px;
 }
 
-.top-info-image{
-    width: 180px;
-    height: 130px;
-    margin: 10px;
-}
 
-.bottom-info-image{
-    width: 180px;
-    height: 130px;
-    margin: 10px;
+.info-image{
+    max-width: 180px;
+    max-height: 130px;
+    margin: 0 auto;
 }

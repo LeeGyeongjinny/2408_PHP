@@ -59,7 +59,7 @@ try {
 <body>
     <header>
         <div class="head-title">
-            <a href="/"><h1>Travels<span>_버킷리스트</span></h1></a>
+            <a href="/loginok.php"><h1>Travels<span>_버킷리스트</span></h1></a>
         </div>
         <div class="btn-header">
             <a href="/index.php">

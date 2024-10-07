@@ -58,7 +58,7 @@ try {
 <body>
     <header>
         <div class="head-title">
-            <a href="/"><h1>Travels<span>_기록</span></h1></a>
+            <a href="/loginok.php"><h1>Travels<span>_기록</span></h1></a>
         </div>
         <div class="btn-header">
             <!-- <a href="/index.php"><button class="btn-css">홈</button></a>

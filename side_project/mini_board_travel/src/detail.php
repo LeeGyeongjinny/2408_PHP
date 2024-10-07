@@ -41,7 +41,6 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/common_main.css">
-    <link rel="stylesheet" href="./css/detail.css">
     <title>Travel Detail</title>
 </head>
 <body>
@@ -70,7 +69,7 @@ try {
                     <span>수정</span>
                 </button>
             </a>
-            <a href="/main.php">
+            <a href="/main.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>">
                 <button class="btn-header-css">
                     <div class="svg-wrapper-1">
                         <div class="svg-wrapper">

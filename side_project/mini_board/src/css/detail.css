@@ -29,6 +29,7 @@ textarea {
     padding: 10px;
 } */
 
+
 /* 수업 */
 
 .box {
@@ -63,4 +64,10 @@ textarea {
     color: #000;
     font-weight: 400;
     padding: 10px;
+}
+
+
+.box img{
+    max-width: 500px;
+    max-height: 600px;
 }
