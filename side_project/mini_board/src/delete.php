@@ -92,7 +92,7 @@ try {
 </head>
 <body>
     <?php 
-    require_once(MY_PATH_ROOT."header.php");
+    require_once(MY_PATH_HEADER);
     ?>
     <main>
         <div class="main-header">

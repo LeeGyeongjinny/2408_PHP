@@ -50,7 +50,7 @@ if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
 </head>
 <body>
     <?php 
-    require_once(MY_PATH_ROOT."header.php");
+    require_once(MY_PATH_HEADER);
     ?>
     <main>
         <form action="/insert.php" method="post">

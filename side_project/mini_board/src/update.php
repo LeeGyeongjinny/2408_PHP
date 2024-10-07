@@ -46,6 +46,10 @@ try {
         // content 획득
         $content = isset($_POST["content"]) ? (string)$_POST["content"] : "";
 
+        // file 획득
+        $file = $_FILES["file"]; // [안에는 name]
+
+
         if($id < 1 || $title === "") {
             throw new Exception("파라미터 오류임");
         }
@@ -61,6 +65,38 @@ try {
             ,"title" => $title
             ,"content" => $content
         ];
+
+        // file 저장 처리
+
+        if($file["name"] !== ""){
+            // 기존 파일 삭제
+
+            $arr_prepare_select = [
+                "id" => $id
+            ];
+
+            $result = my_board_select_id($conn, $arr_prepare_select);
+            if(!is_null($result["img"])) {
+                unlink(MY_PATH_ROOT.$result["img"]);
+            }
+
+            
+            
+            // 새 파일 저장
+            $type = explode("/", $file["type"]);
+            $extension = $type[1];
+            $file_name= uniqid().".".$extension;
+            // 중복없는 랜덤 파일명 만듦
+            $file_path = "/img/".$file_name;
+            // 파일 경로
+
+            move_uploaded_file($file["tmp_name"], MY_PATH_ROOT.$file_path); // 파일 저장
+
+            $arr_prepare["img"] = $file_path;
+        }
+        // 파일 네임이 비어있지 않을 때만 if문 돌림
+
+
 
         my_board_update($conn, $arr_prepare);
         // $result = my_board_update($conn, $arr_prepare); 리턴값이 딱히 필요없다?
@@ -102,14 +138,15 @@ try {
 </head>
 <body>
     <?php 
-    require_once(MY_PATH_ROOT."header.php");
+    require_once(MY_PATH_HEADER);
     ?>
     <main>
-        <form action="/update.php" method="post">
+        <form action="/update.php" method="post" enctype="multipart/form-data">
             <!-- action update.php인 이유
                 버튼을 눌렀을 때 이동해야하는 곳이 update
                 update이동 후 post타입으로 전송해서 처리하고 header로 detail로 간다
             -->
+            <!-- file을 넣을 때는 enctype="multipart/form-data"를 추가해야한다 -->
             <input type="hidden" name="id" value="<?php echo $result["id"] ?>">
             <input type="hidden" name="page" value="<?php echo $page ?>">
             <div class="box title-box">
@@ -126,6 +163,12 @@ try {
                 <div class="box-title">내용</div>
                 <div class="box-content">
                     <textarea name="content" id="content"><?php echo $result["content"] ?></textarea>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-title">이미지</div>
+                <div class="box-content">
+                    <input type="file" name="file" id="file">
                 </div>
             </div>
             <div class="main-footer">
