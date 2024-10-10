@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Binggrae-Two';
+}
+
+@font-face {
+    font-family: 'Binggrae-Two';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.container{
+    background-image: url(../img/background_img.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    padding: 50px;
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+}
+
+.container::after{
+    content: '';
+    position: absolute;
+    background: white;
+    z-index: -1;
+    inset: 0;
+    opacity: 0.2;
+}
+
+.background{
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    gap: 20px;
+}
+
+h1{
+    font-weight: 600;
+}
+
+.clip_img{
+    align-self: flex-end;
+    padding: 50px;
+}
+
+.clip_img{
+    transform:scale(1.3); 
+}
+
+a{
+    text-decoration: none;
+}
+
+button{
+    border: none;
+    /* padding: 10px; */
+}
+button p {
+    font-size: 2rem;
+}
+button:hover{
+    background-color: #2C5A71;
+}
+
+.flex-test{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+
+
+.list{
+    background-color: #1F304A;
+    width: 500px;
+    height: 750px;
+    padding: 30px;
+}
+
+.list-box{
+    width: 70%;
+    min-height: 50px;
+    background-color: #fff;
+    /* margin: 0 auto; */
+    font-size: 1.3rem;
+}
+button{
+    width: 150px;
+    height: 50px;
+}
+.board{
+    background-color: #1F304A;
+    width: 800px;
+    height: 750px;
+    opacity: .8;
+}
+
+
+/* 어그로체
+https://noonnu.cc/font_page/738 */
+
+/* 세방고딕
+https://noonnu.cc/font_page/656 */
+
+
+
+.index{
+    background-image: url(../img/background_img.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    padding: 50px;
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+    color: #fff;
+  }
+  /* 
+  .index::after{
+    content: '';
+    position: absolute;
+    background: white;
+    z-index: -1;
+    inset: 0;
+    opacity: 0.2;
+  } */
+  
+
+
