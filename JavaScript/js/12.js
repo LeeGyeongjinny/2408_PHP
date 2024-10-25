@@ -66,3 +66,30 @@ function test4(a, b){
     return 'a가 더 큼';
   }
 }
+
+// ----------------------
+// 즉시 실행 함수
+// ----------------------
+const execFnc = (function(a, b){
+  return a + b;
+})(5, 6);
+
+// ----------------------
+// 콜백 함수
+// 다른 함수의 파라미터로 전달되어 특정 조건에 따라 호출되는 함수
+// ----------------------
+function myCallBack() {
+  console.log('myCallBack');
+}
+
+function myChkPrint(callBack, flg) {
+  if(flg) {
+    callBack();
+  }
+}
+
+myChkPrint(myCallBack, true); // myCallBack 출력
+// 함수뒤에 ()안붙였다 -> 실행되지않고 전달만 됨 -> callBack() 여기서 실행됨
+
+myChkPrint(() => 'ttt', true); // 일회성이라고 생각하고?
+// return이라 화면에는 안찍힘
