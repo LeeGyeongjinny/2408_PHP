@@ -85,8 +85,8 @@ TITLE.classList.add('class-2', 'class-3', 'class-4'); // 한번에 여러개
 // classList.remove() : 해당 클래스 제거
 TITLE.classList.remove('class-3');
 
-// classList.toggle() : 해당 클래스를
-TITLE.classList.remove('toggle');
+// classList.toggle() : 클래스가 없으면 추가, 있으면 제거
+TITLE.classList.toggle('toggle');
 // setInterval(()=>{TITLE.classList.toggle('toggle')}, 10); 깜빡깜빡 숫자로 속도 조절가능
 
 
