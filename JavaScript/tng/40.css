@@ -1,9 +1,8 @@
-.heartbeat{
+/* .heartbeat{
   width: 100px;
   height: 100px;
   background-color: #1954c2;
   padding: 10px;
-  /* position: absolute; */
   box-sizing: border-box;
 }
 
@@ -20,4 +19,29 @@
 .listing-item {
   float: left;
   box-sizing: border-box;
+} */
+
+
+/* 수업 */
+
+.container{
+  width: 100px;
+  height: 100px;
+  background-color: #f9c4c4;
+  /* 배경색 안주면 초기 흰 화면이랑 같아져서 굳이 opacity같은 것 안줘도 된다 */
+  position: absolute;
+  top: 300px;
+  left: 300px;
+}
+
+.box{
+  width: 70px;
+  height: 70px;
+  margin: 15px;
+  /* background-color: paleturquoise; */
+  /* 배경색 안주면 초기 흰 화면이랑 같아져서 굳이 opacity같은 것 안줘도 된다 */
+}
+
+.busted{
+  background-color: darkslategray;
 }
