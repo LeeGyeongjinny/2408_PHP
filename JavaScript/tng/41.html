@@ -6,21 +6,25 @@
   <script src="./41.js" defer></script>
   <title>Document</title>
   <style>
+    p, span, button {
+      font-size: 1.5rem;
+    }
+
     button {
       width: 100px;
       height: 50px;
-      font-size: 1.5rem;
     }
   </style>
 </head>
 <body>
-  <p>현재 시간 </p>
+  <!-- <p>현재 시간 </p> -->
+  <p>현재시간 <span id="time"></span></p>
   <!-- <div id="clock"></div> -->
   <button id="stop" type="button">멈춰</button>
   <button id="restart" type="button">재시작</button>
   <hr>
-  <button type="button">시작</button>
+  <!-- <button type="button">시작</button>
   <button id="lap" type="button">기록</button>
-  <button type="button">리셋</button>
+  <button type="button">리셋</button> -->
 </body>
 </html>

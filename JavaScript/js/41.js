@@ -107,9 +107,9 @@ const EMOJI2 = '<span style="color:red;">凸</span>(｀0´)<span style="color:re
 setInterval(() => {
   const P = document.querySelector('P');
   if(P.innerHTML === EMOJI1) {
-    P.innerHTML = EMOJI1;
-  } else {
     P.innerHTML = EMOJI2;
+  } else {
+    P.innerHTML = EMOJI1;
   }
 }, 500);
 
