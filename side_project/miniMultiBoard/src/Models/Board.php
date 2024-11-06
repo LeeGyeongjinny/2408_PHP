@@ -26,4 +26,51 @@ class Board extends Model {
       exit;
     }
   }
+  // 상세 버튼 내용 출력
+  public function getBoardDetail($paramArr){
+    try {
+      $sql =
+        // 상세 버튼 출력 기본
+        // ' SELECT * '
+        // .' FROM boards '
+        // .' WHERE '
+        // .'    b_id = :b_id '
+        // .'    AND deleted_at IS NULL '
+
+        // 상세 버튼에 유저이름까지 출력
+        // 혼자
+        // ' SELECT  '
+        // .'    users.u_name '
+        // .'    ,boards.b_title '
+        // .'    ,boards.b_content '
+        // .'    ,boards.b_img '
+        // .' FROM boards '
+        // .' JOIN users '
+        // .'    ON boards.u_id = users.u_id '
+        // .' WHERE '
+        // .'    b_id = :b_id '
+        // .'    AND boards.deleted_at IS NULL '
+        // 수업
+        ' SELECT  '
+        .'    boards.b_title '
+        .'    ,boards.b_content '
+        .'    ,boards.b_img '
+        .'    ,boards.b_id '
+        .'    ,users.u_name '
+        .' FROM boards '
+        .'    JOIN users '
+        .'      ON boards.u_id = users.u_id '
+        .' WHERE '
+        .'    boards.b_id = :b_id '
+        .'    AND boards.deleted_at IS NULL '
+      ;
+
+      $stmt = $this->conn->prepare($sql);
+      $stmt->execute($paramArr);
+      return $stmt->fetch();
+    } catch (Throwable $th) {
+      echo 'Board->getBoardDetail(), '.$th->getMessage();
+      exit;
+    }
+  }
 }

@@ -38,6 +38,5 @@ class Model {
   public function rollBack(){
     $this->conn->rollBack();
   }
-
   // 커밋과 롤백의 예외처리는 자식모델쪽에서 하면 될 듯
 }

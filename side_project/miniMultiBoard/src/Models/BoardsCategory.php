@@ -17,9 +17,9 @@ class BoardsCategory extends Model {
         .'    bc_type = :bc_type '
       ;
 
-      $stmt = $this->conn->prepare($sql); // conn -> 부모모델에 있는 conn
+      $stmt = $this->conn->prepare($sql);
       $stmt->execute($paramArr);
-      return $stmt->fetch(); // 데이터 하나만 가져올거라서 fetch
+      return $stmt->fetch(); // 데이터 레코드 하나만 가져올거라서 fetch
     } catch (Throwable $th){
       echo 'BoardCategory->getBoardName(), '.$th->getMessage();
       exit;

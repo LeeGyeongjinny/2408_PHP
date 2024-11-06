@@ -2,6 +2,8 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">미니보드</a>
+      <!-- 로그인페이지 버튼 안보이게 -->
+      <?php if(!($_GET['url'] === 'login' ||  $_GET['url'] === 'regist')) { ?>
       <!-- 햄버거 버튼 -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> 
         <span class="navbar-toggler-icon"></span>
@@ -20,8 +22,9 @@
             </ul>
           </li>
         </ul>
-        <a href="./login.html" class="navbar-nav nav-link text-light " role="button">로그아웃</a>
+        <a href="/logout" class="navbar-nav nav-link text-light " role="button">로그아웃</a>
       </div>
+      <?php } ?> <!-- 이까지 if문 -->
     </div>
   </nav>
 </header>

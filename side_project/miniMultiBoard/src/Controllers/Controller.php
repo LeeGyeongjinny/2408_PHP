@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Lib\Auth;
 use Models\BoardsCategory;
 
 class Controller{
@@ -11,13 +12,14 @@ class Controller{
   protected $arrBoardNameInfo = []; // 헤더 게시판 드롭다운 리스트
 
   // 생성자
-  public function __construct(string $action){
+  public function __construct(string $action) {
     // 세션 시작
-    if(session_status() === PHP_SESSION_NONE){
+    if(session_status() === PHP_SESSION_NONE) {
       session_start();
     }
 
     // 유저 로그인 및 권한 체크
+    Auth::chkAuthorization();
 
     // 헤더 드롭다운 리스트 획득
     $boardsCategoryModel = new BoardsCategory();
@@ -25,7 +27,6 @@ class Controller{
 
     // 해당 Action 호출
     $resultAction = $this->$action();
-    // echo $resultAction;
 
     // view 호출
     $this->callView($resultAction);
@@ -37,7 +38,7 @@ class Controller{
   /**
    * 뷰 OR 로케이션 처리용 메소드
    */
-  private function callView($path){
+  private function callView($path) {
     if(strpos($path, 'Location:') === 0) {
       header($path); // $path로 보내줌
     } else {
@@ -45,4 +46,3 @@ class Controller{
     }
   }
 }
-// $action 현재 goLogin() -> 그래서 UserController에서 function goLogin()가 실행됨
