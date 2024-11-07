@@ -5,7 +5,6 @@
       // console.log(e.target.value); // 버튼 누르면 해당 pk값 출력됨
       const URL = '/boards/detail?b_id=' + e.target.value;
       // console.log(URL); // 확인용
-
       axios.get(URL)
       .then(response => {
         // console.log(response); // 확인용
@@ -27,6 +26,10 @@
   });
 
   document.querySelector('#btnInsert').addEventListener('click', () => {
-    window.location = '/boards/insert';
+    // console.log(e.target);
+    // console.log(e.currentTarget);
+    // window.location = '/boards/insert?bc_type=' + document.querySelector('#btnInsert').value;
+    window.location = '/boards/insert?bc_type=' + document.querySelector('#inputBoardType').value;
   });
+
 })();

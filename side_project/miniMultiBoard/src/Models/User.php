@@ -41,7 +41,7 @@ class User extends Model {
       $stmt = $this->conn->prepare($sql); // conn -> 부모모델에 있는 conn
       $stmt->execute($paramArr);
       return $stmt->rowCount(); // 영향받은 행의 개수
-    } catch (\Throwable $th) {
+    } catch (Throwable $th) {
       echo 'User->registUserInfo, '.$th->getMessage();
       exit;
     } 
