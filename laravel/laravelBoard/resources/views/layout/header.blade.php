@@ -9,17 +9,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    게시판
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">자유게시판</a></li>
-                    <li><a class="dropdown-item" href="#">질문게시판</a></li>
-                    <!-- <li><hr class="dropdown-divider"></li> -->
-                </ul>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        게시판
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">자유게시판</a></li>
+                        <li><a class="dropdown-item" href="#">질문게시판</a></li>
+                    </ul>
                 </li>
             </ul>
-            <a href="./login.html" class="navbar-nav nav-link text-light " role="button">로그아웃</a>
+            <a href="{{ route('logout') }}" class="navbar-nav nav-link text-light " role="button">로그아웃</a>
             </div>
         </div>
     </nav>

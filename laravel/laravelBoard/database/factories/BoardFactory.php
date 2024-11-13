@@ -31,6 +31,7 @@ class BoardFactory extends Factory
             ,'/img/nonono.jpg'
             ,'/img/meerkat_what.jpg'
             ,'/img/meerkat_bite.jpg'
+            ,'/img/tako.jpg'
         ];
         $userInfo = User::inRandomOrder()->first();
 
