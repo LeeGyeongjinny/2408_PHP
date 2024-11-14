@@ -14,8 +14,9 @@
 @section('main')
 
 <div class="text-center mt-5 mb-5">
+    <input type="hidden" id="inputBoardType" name="board_type" value="0">
     <h1>자유게시판</h1>
-    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+    <svg id="btnInsert" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
     </svg>
 </div>
@@ -44,6 +45,7 @@
             </div>
             <div class="modal-body">
                 <p id="modalCreatedAt">2024-01-01 00:00:00</p>
+                <p id="modalName">사용자</p>
                 <p id="modalContent">살려주세요.</p>
                 <br>
                 <img id="modalImg" src="./img/nonono.jpg" class="card-img-top" style="height:300px;" alt="">

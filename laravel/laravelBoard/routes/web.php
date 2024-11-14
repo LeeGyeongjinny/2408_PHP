@@ -20,9 +20,16 @@ Route::get('/', function () {
 });
 
 // 로그인
-Route::get('/login', [UserController::class, 'gologin'])->name('goLogin');
+Route::get('/login', [UserController::class, 'goLogin'])->name('goLogin');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
+// 회원가입
+// Route::get('/regist', [UserController::class, 'goRegist'])->name('goRegist');
+// Route::post('/regist', [UserController::class, 'regist'])->name('regist');
+
+Route::get('/registration', [UserController::class, 'registration'])->name('get.registration');
+Route::post('/registration', [UserController::class, 'storeRegistration'])->name('post.registration');
+
 // 게시판 관련
-Route::resource('/boards', BoardController::class)->except(['update', 'edit']);
+Route::middleware('auth')->resource('/boards', BoardController::class)->except(['update', 'edit']);

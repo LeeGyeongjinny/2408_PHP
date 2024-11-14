@@ -27,7 +27,7 @@
             <input type="password" class="form-control" id="u_password" name="u_password">
         </div>
         <button type="submit" class="btn btn-dark w-100 mb-3">로그인</button>
-        <a href="./regist.html" class="btn btn-secondary w-100">회원가입</a>
+        <a href="{{ route('get.registration') }}" class="btn btn-secondary w-100">회원가입</a>
     </form>
 </main>
 @endsection

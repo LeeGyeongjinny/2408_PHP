@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Board;
+use App\Models\BoardsCategory;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class BoardController extends Controller
 {
@@ -31,7 +36,7 @@ class BoardController extends Controller
      */
     public function create()
     {
-        //
+        return view('insert');
     }
 
     /**
@@ -42,7 +47,45 @@ class BoardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $path = $request->file('b_img')->store('img'); // public > img폴더
+        
+        // $path = $request->file('b_img')->storeAs('img', uniqid(), 'local');
+        // 1. root이후로 어디에 저장할지
+
+
+        try {
+            DB::beginTransaction();
+            
+            // Board::create([
+            //     'bc_type' => $request->bc_type
+            //     ,'u_id' => Auth::id()
+            //     ,'b_title' => $request->b_title
+            //     ,'b_content' => $request->b_content
+            //     ,'b_img' => $path
+            // ]);
+        
+            $boardInsert = new Board();
+            $boardInsert->bc_type = $request->bc_type;
+            $boardInsert->u_id = Auth::id();
+            $boardInsert->b_title = $request->b_title;
+            $boardInsert->b_content = $request->b_content;
+            $boardInsert->b_img = $path;
+            $boardInsert->save();
+            
+            
+            // $resultBoardInsert = $boardInsert->Board($request);
+            // if($resultBoardInsert !== 1) {
+            //     throw new Exception('게시글 작성 실패');
+            // }
+
+            DB::commit();
+
+        } catch (Throwable $th) {
+            DB::rollBack();
+            return redirect()->route('boards.create')->withErrors($th->getMessage());
+        }
+
+        return redirect()->route('boards.index');
     }
 
     /**
@@ -57,6 +100,9 @@ class BoardController extends Controller
         Log::debug('requested id : '.$id);
 
         $result = Board::find($id);
+        // $result = Board::join('users', 'boards.u_id', '=', 'users.u_id')
+        //             ->select('boards.b_title', 'boards.b_content', 'boards.b_img', 'users.u_name')
+        //             ->get();
         
         Log::debug('획득한 상세 데이터', $result->toArray());
 
