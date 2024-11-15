@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 // 로그인
-Route::get('/login', [UserController::class, 'goLogin'])->name('goLogin');
+Route::middleware('guest')->get('/login', [UserController::class, 'goLogin'])->name('goLogin');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
