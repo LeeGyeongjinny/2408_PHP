@@ -62,12 +62,37 @@
 
   <!-- 자식 컴포넌트 호출 -->
   <BoardComponent />
+  <hr>
+
+  <!-- Props -->
+  <ChildComponent
+    :data = "data"
+    :count = "cnt"
+  >
+  <!-- Slot -->
+    <h3>부모쪽에서 작성한 것들</h3>
+    <p>아아아아아</p>
+  </ChildComponent>
+  <hr>
+  <!-- Component Event -->
+  <p>부모쪽 cnt : {{ cnt }}</p>
+  <!-- <button @click="addCnt">부모쪽 버튼</button> -->
+
+  <EventComponent 
+    :cnt = "cnt"
+    @eventAddCnt = "addCnt"
+    @eventAddCntParam = "addCntParam"
+    @eventResetCnt = "resetCnt"
+  />
+  
 </template>
 
 <!-- -------------------------------------------------------- -->
 
 <script setup>
 import BoardComponent from './components/BoardComponent.vue';
+import ChildComponent from './components/ChildComponent.vue';
+import EventComponent from './components/EventComponent.vue';
 import { reactive, ref } from 'vue';
 
 // ------- ref -------
@@ -81,6 +106,13 @@ function disCnt() {
   cnt.value--;
 }
 
+function addCntParam(num) {
+  cnt.value += num;
+}
+
+function resetCnt() {
+  cnt.value = 0;
+}
 // ------- reactive -------
 // const name = ref('홍길동');
 const userInfo = reactive({
@@ -106,12 +138,14 @@ const transgender = ref('');
 // ------- v-show -------
 const flgShow = ref(true);
 
-// ------- 불법사이트 setInterval -------
+// ------- 불법사이트 setInterval 예시 -------
 // (() => {
 //     setInterval(() => {
 //         flgShow.value = !flgShow.value;
 //     }, 500);
 // })();
+
+// ------- 시도 -------
 
 // (() => {
 //     setInterval(() => {
