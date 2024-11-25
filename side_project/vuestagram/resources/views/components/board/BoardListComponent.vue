@@ -2,29 +2,29 @@
     <!-- 리스트 -->
     <div class="board-list-box">
         <div @click="openModal" class="item">
-            <img src="/img/spongebob_hello.webp" alt="">
+            <img src="/img/zzal1.png" alt="">
         </div>
         <div @click="openModal" class="item">
-            <img src="/img/spongebob_rainbow.webp" alt="">
+            <img src="/img/zzal2.png" alt="">
         </div>
         <div @click="openModal" class="item">
-            <img src="/img/spongebob_mic.png" alt="">
+            <img src="/img/zzal7.png" alt="">
         </div>
         <div @click="openModal" class="item">
-            <img src="/img/pat_and_mat.jpg" alt="">
+            <img src="/img/zzal4.png" alt="">
         </div>
         <div @click="openModal" class="item">
-            <img src="/img/meerkat_what.jpg" alt="">
+            <img src="/img/zzal5.png" alt="">
         </div>
         <div @click="openModal" class="item">
-            <img src="/img/panda.jpg" alt="">
+            <img src="/img/zzal6.png" alt="">
         </div>
     </div>
 
     <!-- 상세 모달 -->
     <div v-show="modalFlg" class="board-detail-box">
         <div class="item">
-            <img src="/img/spongebob_mic.png" alt="">
+            <img src="/img/zzal3.png" alt="">
             <hr>
             <p>내용내용</p>
             <hr>

@@ -49,4 +49,8 @@ class User extends Authenticatable
     }
     // \DateTimeInterface : 이거 use안해서 풀로 적어준 것
     // use해서 @param DateTimeInterface $date 하면 똑같이 작동함
+
+    public function boards() {
+        return $this->hasMany(Board::class, 'user_id');
+    }
 }
