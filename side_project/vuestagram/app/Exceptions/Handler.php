@@ -74,14 +74,20 @@ class Handler extends ExceptionHandler
         $code = 'E99';
         // Log::debug($th->getMessage());
 
-        // 인스턴스 확인 후 예외 정보 변경
+        // 인스턴스 확인 후 예외 정보 변경 (기본 제공되는 클래스 이용)
         if($th instanceof AuthenticationException) {
             $code = 'E01';
         } else if($th instanceof PDOException) {
             $code = 'E80';
         }
 
-        $errInfo = $this->context()[$code];
+        $errInfo = $this->context()[$code]; // 이 Handler 내의 context
+
+        // 커스텀 Exception 인스턴스 확인
+        if($th instanceof MyAuthException) {
+            $code = $th->getMessage();
+            $errInfo = $th->context()[$code]; // custom MyAuthException 안의 context
+        }
 
         // Response Data 생성
         $responseData = [

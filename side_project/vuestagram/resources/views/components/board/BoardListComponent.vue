@@ -1,30 +1,15 @@
 <template>
     <!-- 리스트 -->
     <div class="board-list-box">
-        <div @click="openModal" class="item">
-            <img src="/img/zzal1.png" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/zzal2.png" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/zzal7.png" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/zzal4.png" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/zzal5.png" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/zzal6.png" alt="">
+        <div v-for="item in boardList" :key="item" @click="openModal" class="item">
+            <img :src="item.img">
         </div>
     </div>
 
     <!-- 상세 모달 -->
     <div v-show="modalFlg" class="board-detail-box">
         <div class="item">
-            <img src="/img/zzal3.png" alt="">
+            <img src="/img/zzal3.jpg" alt="">
             <hr>
             <p>내용내용</p>
             <hr>
@@ -39,7 +24,21 @@
 
 <script setup>
 
-import { ref } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
+
+const boardList = computed(() => store.state.board.boardList);
+
+// 비포 마운트 처리
+onBeforeMount(() => {
+    // if(boardList.length < 1) { // boardList는 computed된 객체라서 길이가 없다
+    if(store.state.board.boardList.length < 1) {
+        store.dispatch('board/getBoardListPagination');
+    } // 기존의 정보가 있다면 비포마운트 처리 안함
+});
+
 
 // -------------------------------------
 // 모달 관련
