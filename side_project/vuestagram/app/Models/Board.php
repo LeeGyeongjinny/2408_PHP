@@ -34,6 +34,6 @@ class Board extends Model
     // use해서 @param DateTimeInterface $date 하면 똑같이 작동함
 
     public function user() {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id')->select('user_id', 'name');
     }
 }
