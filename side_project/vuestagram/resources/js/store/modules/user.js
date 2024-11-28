@@ -57,6 +57,8 @@ export default {
                 context.commit('setAuthFlg', true);
                 context.commit('setUserInfo', response.data.data);
 
+                alert('어서와 처음이지');
+
                 // 보드 리스트로 이동
                 router.replace('/boards');
             })
@@ -118,6 +120,124 @@ export default {
                 router.replace('/login');
             });
         },
+
+        /**
+         * 회원가입 처리
+         * 
+         * @param {*}   context
+         * @param {*}   userInfo
+         */
+        registration(context, userInfo) {
+            // 회원가입은 유저인증 필요없어서 accessToken 당연히 필요없음
+            const url = '/api/registration';
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            };
+
+            // form data 셋팅
+            const formData = new FormData();
+            formData.append('account', userInfo.account);
+            formData.append('password', userInfo.password);
+            formData.append('password_chk', userInfo.password_chk);
+            formData.append('name', userInfo.name);
+            formData.append('gender', userInfo.gender);
+            formData.append('profile', userInfo.profile);
+
+            axios.post(url, formData, config)
+            .then(response => {
+                alert('회원가입 성공\n가입 하신 계정으로 로그인 해주세요.');
+
+                // 로그인 페이지로
+                router.replace('/login');
+            }) 
+            .catch(error => {
+                alert('회원가입 실패');
+            });
+        },
+
+        /**
+         * 토큰 만료 체크 후 처리 속행
+         * 
+         * @param {*}   context
+         * @param {Function}    callbackProcess
+         */
+        chkTokenAndContinueProcess(context, callbackProcess) {
+            // Payload 획득
+            const payload = localStorage.getItem('accessToken').split('.')[1];
+            const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+            const objPayload = JSON.parse(window.atob(base64));
+            // console.log(payload, base64, objPayload);
+            
+            const now = new Date();
+
+            // console.log(objPayload.exp * 1000 <= now.getTime());
+            if((objPayload.exp * 1000) > now.getTime()){
+                // 토큰 유효
+                callbackProcess();
+            } else {
+                // 토큰 만료
+                
+                // 토큰 재발급 필요
+                context.dispatch('reissueAccessToken', callbackProcess);
+            }
+
+        },
+
+        /**
+         * 토큰 재발급 처리
+         * 
+         * @param {*}   context
+         * @param {callback}    callbackProcess
+         */
+        
+        reissueAccessToken(context, callbackProcess) {
+            // console.log('토큰 재발급 처리');
+            // callbackProcess(); 
+            const url = '/api/reissue';
+            const config = {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('refreshToken')
+                }
+            };
+
+            axios.post(url, null, config)
+            .then(response => {
+                // 토큰 세팅
+                localStorage.setItem('accessToken', response.data.accessToken);
+                localStorage.setItem('refreshToken', response.data.refreshToken);
+
+                // 후속 처리 진행
+                callbackProcess();
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        },
+
+
+        // 장난 - 유저정보 모달
+        showUser(context, id) {
+            const url = 'api/boards/' + id;
+            const config = {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+                }
+            }
+
+            axios.get(url, config)
+            .then(response => {
+                // console.log(response.data.user);
+                // console.log(response);
+                context.commit('setUserInfo', response.data.user);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        },
+        // 장난 --------
+    
     },
     getters: {
 
