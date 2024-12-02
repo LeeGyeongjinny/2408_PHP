@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BoardController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,14 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::middleware('my.auth')->post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::post('/registration', [UserController::class, 'store'])->name('user.store');
 
 Route::middleware('my.auth')->group(function() {
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
-    Route::get('/boards', [BoardController::class, 'index'])->name('get.index');
+    Route::get('/boards', [BoardController::class, 'index'])->name('boards.index');
+    Route::get('/boards/{id}', [BoardController::class, 'show'])->name('boards.show');
+    Route::post('/boards', [BoardController::class, 'store'])->name('boards.store');
+    // Route::put('/boards/{id}', [BoardController::class, 'update'])->name('boards.update');
+    // Route::delete('/boards/{id}', [BoardController::class, 'delete'])->name('boards.delete');
 });

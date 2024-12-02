@@ -14,6 +14,10 @@ export default {
         setUserInfo(state, userInfo) {
             state.userInfo = userInfo;
         },
+        setUserInfoBoardsCount(state) {
+            state.userInfo.boards_count++;
+            localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
+        },
     },
     actions: {
 
@@ -75,8 +79,6 @@ export default {
                 }
             }
 
-            console.log(url);
-            console.log(config);    
             axios.post(url, null, config)
             .then(response => {
                 alert('로그아웃 완료');
@@ -93,6 +95,35 @@ export default {
                 router.replace('/login');
             });
         },
+
+        // 회원가입
+        registration(context, userInfo) {
+            const url = '/api/registration';
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'        
+                }
+            }
+
+            const formData = new FormData();
+            formData.append('account', userInfo.account);
+            formData.append('password', userInfo.password);
+            formData.append('password_chk', userInfo.password_chk);
+            formData.append('name', userInfo.name);
+            formData.append('gender', userInfo.gender);
+            formData.append('profile', userInfo.profile);
+
+            axios.post()
+            .then(response => {
+                alert('회원가입 성공\n가입한 계정으로 로그인 해');
+                
+                router.replace('/login');
+            })
+            .catch(error => {
+                alert('회원가입 실패');
+            });
+        },
+
     },
     getters: {
 

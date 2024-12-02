@@ -1,7 +1,7 @@
 <template>
     <!-- 리스트 -->
     <div class="board-list-box">
-        <div v-for="item in boardList" :key="item" @click="openModal(item.board_id)" class="item">
+        <div v-for="item in boardList" :key="item" @click="openModal" class="item">
             <img :src="item.img">
         </div>
     </div>

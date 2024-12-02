@@ -22,6 +22,12 @@ class UserRequest extends FormRequest
 
         if($this->routeIs('auth.login')) {
             $rules['account'][] = 'exists:users,account';
+        } else {
+            $rules['account'][] = 'unique:users,account';
+            $rules['password_chk'] = ['same:password'];
+            $rules['name'][] = ['required', 'between:1, 20', 'regex:/^[가-힣]+$/u'];
+            $rules['gender'] = ['required', 'regex:/^[0-1]{1}$/'];
+            $rules['profile'] = ['required', 'image'];
         }
 
         return $rules;
