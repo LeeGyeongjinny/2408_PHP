@@ -17,8 +17,8 @@
         </div>
         <input type="file" name="profile" accept="image/*">
         <hr>
-        <router-link to="/login"><button class="btn btn-submit btn-bg-black">회원가입</button></router-link>
-        <router-link to="/boards"><button @click="$router.replace('/login')" class="btn btn-submit">취소</button></router-link>
+        <button class="btn btn-submit btn-bg-black">회원가입</button>
+        <button @click="$router.replace('/login')" class="btn btn-submit">취소</button>
     </div>
 </template>
 

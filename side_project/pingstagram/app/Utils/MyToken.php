@@ -2,8 +2,12 @@
 
 namespace App\Utils;
 
+use App\Exceptions\MyAuthException;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use MyEncrypt;
+use PDOException;
 
 class MyToken {
     /**
@@ -18,6 +22,72 @@ class MyToken {
         $refreshToken = $this->createToken($user, env('TOKEN_EXP_REFRESH'), false);
 
         return [$accessToken, $refreshToken];
+    }
+
+    /**
+     * RefreshToken 업데이트
+     * 
+     * @param App\Model\User $userInfo
+     * @param string|null $refreshTOken
+     * 
+     * @return bool ture
+     */
+    public function updateRefreshToken(User $userInfo, string|null $refreshToken) {
+        $userInfo->refresh_token = $refreshToken;
+        
+        // DB::beginTransaction();
+
+        if(!($userInfo->save())) {
+            DB::rollBack();
+            throw new PDOException('Error updateRefreshToken()');
+        }
+
+        // DB::commit();
+
+        return true;
+    }
+
+    /**
+     * 토큰 유효성 체크
+     * 
+     * @param   string|null $token Bearer-token
+     * 
+     * @return  bool true
+     */
+    public function chkToken(string|null $token) {
+        Log::debug("********** chkToken Start **********");
+        // 토큰 존재 유무 체크
+        if(empty($token)) {
+            throw new MyAuthException('E20');
+        }
+
+        // 토큰 위조 검사
+        list($header, $payload, $signature) = $this->explodeToken($token);
+
+        if(MyEncrypt::subSalt($this->createSignature($header, $payload), env('TOKEN_SALT_LENGTH')) 
+            !== MyEncrypt::subSalt($signature, env('TOKEN_SALT_LENGTH'))) {
+            throw new MyAuthException('E22');
+        }
+
+        // 유효시간 체크
+        if($this->getValueInPayload($token, 'exp') < time()) {
+            throw new MyAuthException('E21');
+        }
+
+        Log::debug("********** chkToken End **********");
+
+        return true;
+    }
+
+    public function getValueInPayload(string $token, string $key) {
+        list($header, $payload, $signature) = $this->explodeToken($token);
+        $decodedPayload = json_decode(MyEncrypt::base64UrlDecode($payload));
+    
+        if(empty($decodedPayload) || !isset($decodedPayload->$key)) {
+            throw new MyAuthException('E24');
+        }
+        
+        return $decodedPayload->$key;
     }
 
     /**
@@ -92,6 +162,19 @@ class MyToken {
      */
 
     private function createSignature(string $header, string $payload) {
-        return MyEncrypt::hashWithSalt(env('TOKEN_ALG'), $header.env('TOKEN_SECRET_KEY').$payload, MyEncrypt::makeSalt(env('TOKEN_SALT_LENGTH')));
+        return MyEncrypt::hashWithSalt(env('TOKEN_ALG'), $header.env('TOKEN_SECRET_KEY').$payload, 
+        MyEncrypt::makeSalt(env('TOKEN_SALT_LENGTH')));
+    }
+
+    // 토큰 분리
+
+    private function explodeToken($token) {
+        $arrToken = explode('.', $token);
+
+        if(count($arrToken) !== 3) {
+            throw new MyAuthException('E23');
+        }
+        
+        return $arrToken;
     }
 }

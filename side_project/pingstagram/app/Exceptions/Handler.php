@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
+use PDOException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -42,33 +43,26 @@ class Handler extends ExceptionHandler
     }
 
     public function report(Throwable $th) {
-        // Log::info($th->getMessage());
-        $code = 'E99';
-
-        if($th instanceof AuthenticationException) {
-            $code = $th->getMessage();
-        }
-        $errInfo = $this->context()[$code];
-
-        Log::info($code.' : '.$errInfo['msg']);
-    }
-
-    // 에러메시지
-    public function context() {
-        return [
-            'E01' => ['status' => 401, 'msg' => '인증 실패'],
-            'E99' => ['status' => 500, 'msg' => '시스템 에러 발생'],
-        ];
+        Log::info('Report : '.$th->getMessage());
     }
 
     public function render($request, Throwable $th) {
         $code = 'E99';
 
+        // 기본 인스턴스
         if($th instanceof AuthenticationException) {
-            $code = $th->getMessage();
+            $code = 'E01';
+        } else if($th instanceof PDOException) {
+            $code = 'E80';
         }
 
-        $errInfo = $this->context()['$code'];
+        $errInfo = $this->context()[$code];
+
+        // 커스텀 인스턴스
+        if($th instanceof MyAuthException) {
+            $code = $th->getMessage();
+            $errInfo = $th->context()[$code];
+        }
 
         $responseData = [
             'success' => false
@@ -77,5 +71,14 @@ class Handler extends ExceptionHandler
         ];
 
         return response()->json($responseData, $errInfo['status']);
+    }
+
+    // 에러메시지
+    public function context() {
+        return [
+            'E01' => ['status' => 401, 'msg' => '인증 실패'],
+            'E80' => ['status' => 500, 'msg' => 'DB 에러 발생'],
+            'E99' => ['status' => 500, 'msg' => '시스템 에러 발생'],
+        ];
     }
 }

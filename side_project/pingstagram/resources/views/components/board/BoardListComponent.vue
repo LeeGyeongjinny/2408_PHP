@@ -1,14 +1,8 @@
 <template>
     <!-- BoardList -->
     <div class="board-list-box">
-        <div @click="openModal" class="item">
-            <img src="/img/saecomping.png" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/saecomping.png" alt="">
-        </div>
-        <div @click="openModal" class="item">
-            <img src="/img/saecomping.png" alt="">
+        <div v-for="item in boardList" :key="item" @click="openModal" class="item">
+            <img :src="item.img">
         </div>
     </div>
 
@@ -35,10 +29,16 @@
 
 <script setup>
 
-import { onBeforeMount, ref } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
+const boardList = computed(() => store.state.board.boardList);
 
 onBeforeMount(() => {
-    console.log('비포마운트 확인');
+    if(store.state.board.boardList.length < 1) {
+        store.dispatch('board/getBoardListPagination');
+    }
 });
 
 

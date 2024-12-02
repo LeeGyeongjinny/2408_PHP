@@ -15,6 +15,11 @@ class MyEncrypt {
         return strtr(base64_encode($json), '+/', '-_');
     }
 
+    // base64 URL decode
+    public function base64UrlDecode(string $base64) {
+        return base64_decode(strtr($base64, '-_', '+/'));
+    }
+
     /**
      * Salt 생성
      * 
@@ -38,4 +43,11 @@ class MyEncrypt {
     public function hashWithSalt(string $alg, string $str, string $salt) {
         return hash($alg, $str).$salt;
     }
+
+    // 솔트 제거한 문자열 반환
+    public function subSalt(string $signature, int $saltLength) {
+        return mb_substr($signature, 0, (-1 * $saltLength));
+    }
+
+
 }
