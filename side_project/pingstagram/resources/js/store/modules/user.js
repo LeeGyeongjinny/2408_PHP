@@ -113,9 +113,9 @@ export default {
             formData.append('gender', userInfo.gender);
             formData.append('profile', userInfo.profile);
 
-            axios.post()
+            axios.post(url, formData, config)
             .then(response => {
-                alert('회원가입 성공\n가입한 계정으로 로그인 해');
+                alert('회원가입 성공\n가입한 계정으로 로그인하세요');
                 
                 router.replace('/login');
             })
@@ -124,6 +124,49 @@ export default {
             });
         },
 
+        // 토큰 만료 후 처리
+        chkTokenAndContinueProcess(context, callbackProcess) {
+            // payload 획득
+            const payload = localStorage.getItem('accessToken').split('.')[1];
+            const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+            const objPayload = JSON.parse(window.atob(base64));
+            // console.log(payload, base64, objPayload);
+
+            const now = new Date();
+            if((objPayload.exp * 1000) > now.getTime()){
+                // console.log('토큰 유효');
+                // 토큰 유효
+                callbackProcess(); // 유저가 하려던 처리?
+            } else {
+                // console.log('토큰 만료');
+                 // 토큰 만료 -> 재발급
+                context.dispatch('reissueAccessToken', callbackProcess);
+            }
+        },
+
+        // 토큰 재발급
+        reissueAccessToken(context, callbackProcess) {
+            // console.log('토큰 재발급 처리');
+            callbackProcess(); 
+
+            const url = '/api/reissue';
+            const config = {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('refreshToken'),
+                }
+            }
+
+            axios.post(url, null, config)
+            .then(response => {
+                localStorage.setItem('accessToken', response.data.accessToken);
+                localStorage.setItem('refreshToken', response.data.refreshToken);
+
+                callbackProcess();
+            })
+            .catch(error => {
+                console.error(errorr);
+            });
+        },
     },
     getters: {
 

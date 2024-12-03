@@ -9,8 +9,7 @@
                 <img src="/hachu.png" alt="img-logo">
                 <div class="btn-group">
                     <div v-if="!$store.state.user.authFlg">
-                        <router-link to="/login"><button class="btn btn-header btn-bg-black">로그인</button></router-link>
-                        <router-link to="/registration"><button class="btn btn-header btn-bg-white">회원가입</button></router-link>
+                        <router-link to="/registration"><button class="btn btn-header btn-bg-black">회원가입</button></router-link>
                     </div>
                     <div v-else>
                         <button @click="$store.dispatch('user/logout')" class="btn btn-header btn-bg-black">로그아웃</button>
@@ -22,6 +21,7 @@
 
     <!-- Main -->
     <main>
+        <!-- <button @click="$store.dispatch('user/chkTokenAndContinueProcess', () => {console.log('테스트')})">토큰 만료체크 후 삭제</button> -->
         <UserInfoComponent v-if="$store.state.user.authFlg" />
         <br>
         <div class="container">

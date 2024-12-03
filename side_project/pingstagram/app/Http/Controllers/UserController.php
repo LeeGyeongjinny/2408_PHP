@@ -13,7 +13,6 @@ class UserController extends Controller
         $insertData = $request->only('account', 'name', 'gender');
         $insertData['password'] = Hash::make($request->password); 
         $insertData['profile'] = '/'.$request->file('profile')->store('profile');
-
         
         User::create($insertData);
         

@@ -67,6 +67,10 @@ a:hover {
     color: #000;
     background-color: #fff;
 }
+.btn-color-red {
+    color: #fff;
+    background-color: #f00;
+}
 
 /* Form */
 .form-box {

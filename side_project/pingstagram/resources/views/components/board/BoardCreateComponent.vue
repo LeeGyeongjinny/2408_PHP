@@ -20,11 +20,11 @@ const boardInfo = reactive({
 });
 
 const preview = ref('');
+
 const setFile = (e) => {
     boardInfo.file = e.target.files[0];
     preview.value = URL.createObjectURL(boardInfo.file);
 }
-
 </script>
 
 <style>

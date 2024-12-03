@@ -21,9 +21,10 @@ Route::post('/registration', [UserController::class, 'store'])->name('user.store
 
 Route::middleware('my.auth')->group(function() {
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+    Route::post('/reissue', [AuthController::class, 'reissue'])->name('auth.reissue');
+
     Route::get('/boards', [BoardController::class, 'index'])->name('boards.index');
     Route::get('/boards/{id}', [BoardController::class, 'show'])->name('boards.show');
     Route::post('/boards', [BoardController::class, 'store'])->name('boards.store');
-    // Route::put('/boards/{id}', [BoardController::class, 'update'])->name('boards.update');
-    // Route::delete('/boards/{id}', [BoardController::class, 'delete'])->name('boards.delete');
+    Route::delete('/boards/{id}', [BoardController::class, 'destroy'])->name('boards.destroy');
 });

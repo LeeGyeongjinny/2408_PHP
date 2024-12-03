@@ -9,6 +9,7 @@ export default {
         boardDetail: null,
         controllFlg: true,
         lastPageFlg: false,
+        // deleteFlg: true,
     }),
     mutations: {
         setBoardList(state, boardList) {
@@ -29,12 +30,17 @@ export default {
         setLastPageFlg(state, flg) {
             state.lastPageFlg = flg;
         },
+        // setDeleteFlg(state, flg) {
+        //     state.deleteFlg = flg;
+        // },
     },
     actions: {
         // 게시글 획득
         boardListPagination(context) {
+            // console.log(context.state.controllFlg);
             // 디바운싱
             if(context.state.controllFlg) {
+                // console.log('디바운싱 들어옴');
                 context.commit('setControllFlg', false);
                 const url = '/api/boards?page=' + context.getters['getNextPage'];
                 const config = {
@@ -45,6 +51,7 @@ export default {
     
                 axios.get(url, config)
                 .then(response => {
+                    // console.log(response);
                     context.commit('setBoardList', response.data.boardList.data);
                     context.commit('setPage', response.data.boardList.current_page);
 
@@ -63,20 +70,25 @@ export default {
 
         // Detail Modal
         showBoard(context, id) {
-            const url= 'api/boards/' + id;
-            const config = {
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+            context.dispatch(
+                'user/chkTokenAndContinueProcess'
+                , () => {
+                    const url= '/api/boards/' + id;
+                    const config = {
+                        headers: {
+                            'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+                        }
+                    }
+                
+                    axios.get(url, config)
+                    .then(response => {
+                        context.commit('setBoardDetail', response.data.board);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
                 }
-            }
-        
-            axios.get(url, config)
-            .then(response => {
-                context.commit('setBoardDetail', response.data.board);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+                , {root:true});
         },
 
         // insert
@@ -96,7 +108,7 @@ export default {
                 const formData = new FormData();
                 formData.append('title', data.title);
                 formData.append('content', data.content);
-                formData.append('file', data.file);
+                formData.append('img', data.file);
     
                 axios.post(url, formData, config)
                 .then(response => {
@@ -114,25 +126,28 @@ export default {
             }
         },
 
-        // update
-        // updateBoard(context, data) {
-        //     if(context.state.controllFlg) {
-        //         context.commit('setControllFlg', false);
+        destroyBoard(context, id) {
+                const url = '/api/boards/' + id;
+                const config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+                    }
+                }
 
-        //         const url = '/api/boards';
-        //         const config = {
-        //             headers: {
-        //                 'Content-Type': 'multipart/form-data' ,
-        //                 'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
-        //             }
-        //         }
-
-                
-        // },
+                axios.delete(url, config)
+                .then(response => {
+                    alert('삭제 성공');
+                    // 보드로 보내야해
+                })
+                .catch(error => {
+                    console.error(error);
+                    alert('삭제 실패');
+                });
+        }   
     },
     getters: {
         getNextPage(state) {
             return state.page + 1;
         },
-    }
+    },
 }

@@ -18,8 +18,10 @@
             <div class="etc-box">
                 <span>작성자 : {{ boardDetail.user.name }}</span>
                 <div class="etc-box-btn">
-                    <!-- <router-link to="/boards/{id}"><button class="btn btn-header btn-bg-black">수정</button></router-link>
-                    <router-link to="/boards/{id}"><button class="btn btn-header btn-bg-black">삭제</button></router-link> -->
+                    <!-- <button class="btn btn-header btn-bg-black">수정</button> -->
+                    <div v-if="$store.state.user.userInfo.user_id === boardDetail.user_id">
+                        <button @click="deletemodal(boardDetail.board_id)" class="btn btn-header btn-color-red">삭제</button>
+                    </div>
                     <button @click="closeModal" class="btn btn-header btn-bg-black">닫기</button>
                 </div>
             </div>
@@ -45,17 +47,10 @@ onBeforeMount(() => {
 // scroll
 const boardScrollEvent = () => {
     if(store.state.board.controllFlg) {
-
-        // console.log('******* 스크롤 이벤트 시작 *******');
         const docHeight = document.documentElement.scrollHeight;
         const winHeight = window.innerHeight;
         const nowHeight = window.scrollY;
         const viewHeight = docHeight - winHeight;
-        // console.log('******* 스크롤 이벤트 끝 *******');
-
-        console.log('스크롤 이벤트');
-
-        console.log(viewHeight, nowHeight);
 
         if(viewHeight <= nowHeight) {
             store.dispatch('board/boardListPagination', true);
@@ -67,7 +62,6 @@ window.addEventListener('scroll', boardScrollEvent);
 // Modal
 const modalFlg = ref(false);
 const openModal = (id) => {
-    // console.log(id);
     store.dispatch('board/showBoard', id);
     modalFlg.value = true;
 }
@@ -75,6 +69,12 @@ const closeModal = () => {
     modalFlg.value = false;
 }
 
+// delete
+// const deleteModalFlg = ref(false);
+const deletemodal = (id) => {
+    store.dispatch('board/destroyBoard', id);
+    // deleteModalFlg.value = true;
+}
 </script>
 
 <style>

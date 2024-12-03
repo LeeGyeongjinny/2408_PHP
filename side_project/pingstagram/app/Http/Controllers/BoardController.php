@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BoardRequest;
 use App\Models\Board;
 use MyToken;
 use Illuminate\Http\Request;
@@ -34,11 +35,12 @@ class BoardController extends Controller
         return response()->json($responseData, 200);
     }
 
-    public function store(Request $request) {
+    public function store(BoardRequest $request) {
+
         $insertData = $request->only('title','content');
         $insertData['user_id'] = MyToken::getValueInPayload($request->bearerToken(), 'idt');
         $insertData['like'] = 0;
-        $insertData['img'] = '/'.$request->file('file')->store('img');
+        $insertData['img'] = '/'.$request->file('img')->store('img');
 
         // insert
         $board = Board::create($insertData);
@@ -47,6 +49,20 @@ class BoardController extends Controller
             'success' => true
             ,'msg' => '게시글 작성 성공'
             ,'board' => $board->toArray()
+        ];
+
+        return response()->json($responseData, 200);
+    }
+
+    public function destroy($id) {
+        $board = Board::with('user')
+                        ->find($id);
+        $board->delete();
+
+        $responseData = [
+            'success' => true
+            ,'msg' => '게시글 삭제 성공'
+            // ,'board' => $board->toArray()
         ];
 
         return response()->json($responseData, 200);

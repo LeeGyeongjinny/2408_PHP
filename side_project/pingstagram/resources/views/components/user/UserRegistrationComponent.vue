@@ -33,6 +33,10 @@ const userInfo = reactive({
     ,gender: ''
     ,profile: null
 });
+
+const setFile = (e) => {
+    userInfo.profile = e.target.files[0];
+}
 </script>
 
 <style>
